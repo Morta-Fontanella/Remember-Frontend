@@ -1,0 +1,17 @@
+.notesContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.notesContainer h2 {
+	margin-bottom: 1rem;
+	font-weight: 300;
+}
+
+.notesGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	justify-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+}

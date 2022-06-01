@@ -3,12 +3,20 @@
 :root {
 	--background-color: #f5f5f5;
 	--background-color-alternative: #ffffff;
-	--text-color: #16181c;
+	--text-color: #1c1616;
 	--primary-color: #f4b615;
 	--primary-color-contrast: #ffffff;
 	--disabled-color: #d9d9d9;
 	--disabled-color-contrast: #888888;
 	--font-family: "Nunito", sans-serif;
+
+	/*NotesColors*/
+	--note-red: #f28b82;
+	--note-pink: #fdcfe8;
+	--note-yellow: #fff475;
+	--note-green: #ccff90;
+	--note-blue: #aecbfa;
+	--note-purple: #d7aefb;
 }
 
 * {
@@ -22,13 +30,31 @@ html[data-theme="light"] {
 	--background-color-alternative: #ffffff;
 	--text-color: #16181c;
 	--primary-color: #f4b615;
+	--primary-color-contrast: #ffffff;
+	--disabled-color: #d9d9d9;
+	--disabled-color-contrast: #888888;
+	--note-red: #f28b82;
+	--note-pink: #fdcfe8;
+	--note-yellow: #fff475;
+	--note-green: #ccff90;
+	--note-blue: #aecbfa;
+	--note-purple: #d7aefb;
 }
 
 html[data-theme="dark"] {
 	--background-color: #000000;
 	--background-color-alternative: #16181c;
 	--text-color: #e7e9ea;
-	--primary-color: #f4b615;
+	--primary-color: #41331c;
+	--primary-color-contrast: #ffffff;
+	--disabled-color: #d9d9d9;
+	--disabled-color-contrast: #888888;
+	--note-red: #5c2b29;
+	--note-pink: #5b2245;
+	--note-yellow: #635d19;
+	--note-green: #345920;
+	--note-blue: #2d555e;
+	--note-purple: #42275e;
 }
 
 body {
@@ -57,7 +83,7 @@ h4 {
 p,
 span,
 a {
-	font-size: 1.4rem;
+	font-size: 1.1rem;
 }
 
 header {
@@ -94,4 +120,8 @@ header {
 
 .userButtonsContainer .button {
 	margin-left: 1rem;
+}
+
+main {
+	padding: 1rem 3rem;
 }

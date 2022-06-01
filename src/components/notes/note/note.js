@@ -1,11 +1,24 @@
 import React from "react";
 
-const Note = () => {
+import "./noteStyles.css";
+
+function Note(props) {
 	return (
-		<div>
-			<h1>Note</h1>
+		<div className={"note " + (props.color ? props.color : "")}>
+			{props.img ? <img src={props.img} alt="note" /> : <div></div>}
+			<div className="textContainer">
+				<h3>{props.title}</h3>
+				<p>{props.text}</p>
+			</div>
+			<div className="infoContainer">
+				<div className="bottomContainer">
+					<p>
+						Created by {props.creator} {props.date} days ago
+					</p>
+				</div>
+			</div>
 		</div>
 	);
-};
+}
 
 export default Note;
