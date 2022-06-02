@@ -15,6 +15,10 @@ function Note(props) {
 					<p>
 						Created by {props.creator} {props.date} days ago
 					</p>
+					<div className="buttonContainer">
+						<i class="fa-solid fa-palette"></i>
+						<i class="fa-solid fa-ellipsis-vertical"></i>
+					</div>
 				</div>
 			</div>
 		</div>

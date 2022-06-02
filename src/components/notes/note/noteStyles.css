@@ -34,6 +34,31 @@
 	font-size: 0.9rem;
 }
 
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.buttonContainer i {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 50px;
+	font-size: 1rem;
+	opacity: 80%;
+}
+
+.buttonContainer i:hover {
+	cursor: pointer;
+	background-color: #5050501e;
+	opacity: 100%;
+	transition: 0.2s;
+}
+
 .red {
 	background-color: var(--note-red);
 }
