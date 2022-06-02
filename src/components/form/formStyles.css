@@ -1,0 +1,110 @@
+.formContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color-alternative);
+	border-radius: 5px;
+	color: var(--text-color);
+	width: 30rem;
+	min-height: 10rem;
+}
+
+.textContainer {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	flex-grow: 1;
+}
+
+.titleContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.titleContainer i {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 50px;
+	font-size: 1rem;
+	opacity: 80%;
+}
+
+.titleContainer i:hover {
+	cursor: pointer;
+	background-color: #5050501e;
+	opacity: 100%;
+	transition: 0.2s;
+}
+
+.title,
+.content {
+	font-family: var(--font-family);
+	width: 100%;
+	border: none;
+
+	outline: none;
+}
+
+.title {
+	font-size: 1.2rem;
+}
+
+.content {
+	font-size: 0.9rem;
+	resize: none;
+	min-height: 100px;
+	overflow: hidden;
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 1rem;
+}
+
+.hidden {
+	display: none;
+}
+
+.red {
+	background-color: var(--note-red);
+}
+
+.pink {
+	background: var(--note-pink);
+}
+
+.yellow {
+	background: var(--note-yellow);
+}
+
+.green {
+	background: var(--note-green);
+}
+
+.blue {
+	background: var(--note-blue);
+}
+
+.purple {
+	background: var(--note-purple);
+}
