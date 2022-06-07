@@ -82,3 +82,9 @@
 .purple {
 	background: var(--note-purple);
 }
+
+@media only screen and (min-width: 1030px) and (max-width: 1366px) {
+	.bottomContainer p {
+		font-size: 0.8rem;
+	}
+}

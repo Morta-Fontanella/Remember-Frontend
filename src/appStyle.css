@@ -96,7 +96,7 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--background-color-alternative);
-	padding: 1rem;
+	padding: 1rem 2.5rem;
 }
 
 .logoContainer {
@@ -128,4 +128,78 @@ header {
 
 main {
 	padding: 1rem 3rem;
+}
+
+/* Laptop */
+@media only screen and (min-width: 1030px) and (max-width: 1366px) {
+	h1 {
+		font-size: 3rem;
+	}
+
+	h2 {
+		font-size: 2.2rem;
+	}
+
+	h3 {
+		font-size: 1.6rem;
+	}
+
+	h4 {
+		font-size: 1.4rem;
+	}
+
+	p,
+	span,
+	a {
+		font-size: 1rem;
+	}
+
+	header {
+		padding: 0.5rem 1.5rem;
+	}
+
+	.logoContainer img {
+		height: 50px;
+	}
+}
+
+/* Smartphone */
+@media only screen and (max-device-width: 640px) {
+	h1 {
+		font-size: 3rem;
+	}
+
+	h2 {
+		font-size: 2.2rem;
+	}
+
+	h3 {
+		font-size: 1.6rem;
+	}
+
+	h4 {
+		font-size: 1.4rem;
+	}
+
+	p,
+	span,
+	a {
+		font-size: 1rem;
+	}
+
+	header {
+		padding: 1rem;
+	}
+
+	.logoContainer img {
+		height: 50px;
+	}
+
+	.logoContainer h2 {
+		display: none;
+	}
+
+	main {
+		padding: 1.2rem;
+	}
 }
