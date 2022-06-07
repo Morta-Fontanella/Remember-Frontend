@@ -13,8 +13,9 @@ const root = createRoot(container);
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 root.render(
-  <Provider store={store}>
-    <App tab="home" />
-  </Provider>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<Provider store={store}>
+			<App tab="home" />
+		</Provider>
+	</React.StrictMode>
 );
