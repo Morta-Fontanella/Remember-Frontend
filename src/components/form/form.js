@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
 
 import "./formStyles.css";
+import { createNote } from "../../actions/notes";
 
 const Form = () => {
 	const [noteData, setNoteData] = useState({
@@ -9,21 +11,24 @@ const Form = () => {
 		title: "",
 		content: "",
 		color: "",
-		selectedFile: "",
+		image: "",
 	});
 
+	const dispatch = useDispatch();
+
 	const clear = () => {
-		setNoteData({
-			creator: "",
+		/*		setNoteData({
+ 			creator: "",
 			title: "",
 			content: "",
 			color: "",
-			selectedFile: "",
-		});
+			image: "", 
+		});*/
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
+		dispatch(createNote(noteData));
 		console.log("LAS NOTAS");
 		console.log(noteData);
 	};
