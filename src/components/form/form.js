@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./formStyles.css";
-import { createNote } from "../../actions/notes";
+import { createNote, updateNote } from "../../actions/notes";
 
 const Form = (currentId, setCurrentId) => {
+	const dispatch = useDispatch();
+	const note = useSelector((state) =>
+		currentId ? state.notes.find((p) => p._id === currentId) : null
+	);
+
 	const [noteData, setNoteData] = useState({
 		creator: "",
 		title: "",
@@ -14,23 +19,25 @@ const Form = (currentId, setCurrentId) => {
 		image: "",
 	});
 
-	const dispatch = useDispatch();
-
 	const clear = () => {
-		/*		setNoteData({
- 			creator: "",
-			title: "",
-			content: "",
-			color: "",
-			image: "", 
-		});*/
+		setCurrentId(null);
+		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
 	};
+
+	useEffect(() => {
+		if (note) setNoteData(note);
+		console.log(note);
+	}, [note]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(createNote(noteData));
-		console.log("LAS NOTAS");
-		console.log(noteData);
+
+		if (currentId) {
+			dispatch(updateNote(currentId, noteData));
+		} else {
+			dispatch(createNote(noteData));
+		}
+		clear();
 	};
 
 	return (

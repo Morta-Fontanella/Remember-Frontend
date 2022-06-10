@@ -3,7 +3,7 @@ import moment from "moment";
 
 import "./noteStyles.css";
 
-function Note({ note }) {
+function Note({ note, setCurrentId }) {
 	return (
 		<div className={"note " + (note.color ? note.color : "")}>
 			{note.image ? <img src={note.image} alt="note" /> : <div></div>}
@@ -18,7 +18,10 @@ function Note({ note }) {
 					</p>
 					<div className="buttonContainer">
 						<i className="fa-solid fa-palette"></i>
-						<i className="fa-solid fa-ellipsis-vertical"></i>
+						<i
+							className="fa-solid fa-ellipsis-vertical"
+							onClick={() => setCurrentId(note._id)}
+						></i>
 					</div>
 				</div>
 			</div>

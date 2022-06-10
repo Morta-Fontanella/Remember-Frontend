@@ -19,3 +19,13 @@ export const createNote = (note) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const updateNote = (id, note) => async (dispatch) => {
+	try {
+		const { data } = await api.updateNote(id, note);
+
+		dispatch({ type: "UPDATE", payload: data });
+	} catch (error) {
+		console.log(error);
+	}
+};
