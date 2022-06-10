@@ -6,13 +6,12 @@ export const getNotes = () => async (dispatch) => {
 
 		dispatch({ type: "FETCH_ALL", payload: data });
 	} catch (error) {
-		console.log(error.message);
+		console.log(error);
 	}
 };
 
 export const createNote = (note) => async (dispatch) => {
 	try {
-		console.log("creaaateeee");
 		const { data } = await api.createNote(note);
 
 		dispatch({ type: "CREATE", payload: data });
@@ -23,9 +22,7 @@ export const createNote = (note) => async (dispatch) => {
 
 export const updateNote = (id, note) => async (dispatch) => {
 	try {
-		console.log("pasa por el update");
 		const { data } = await api.updateNote(id, note);
-
 		dispatch({ type: "UPDATE", payload: data });
 	} catch (error) {
 		console.log(error);
@@ -38,6 +35,6 @@ export const deleteNote = (id) => async (dispatch) => {
 
 		dispatch({ type: "DELETE", payload: id });
 	} catch (error) {
-		console.log(error.message);
+		console.log(error);
 	}
 };

@@ -25,27 +25,27 @@ function Form(props) {
 		if (note) setNoteData(note);
 	}, [note]);
 
-	/* 	const clear = () => {
+	const clear = () => {
 		props.setCurrentId(null);
 		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
-	}; */
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("edit id " + props.currentId);
-		if (props.currentId === 0) {
+		if (props.currentId === null) {
 			dispatch(createNote(noteData));
 		} else {
 			dispatch(updateNote(props.currentId, noteData));
 		}
 		props.setFormPopup(false);
-		//clear();
+		clear();
+		window.location.reload();
 	};
 
 	return props.trigger ? (
 		<div className="formContainer">
 			<form autoComplete="off" noValidate>
-				{note.image ? <img src={note.image} alt="note" /> : <div></div>}
+				{note && note.image ? <img src={note.image} alt="note" /> : <div></div>}
 				<div className="textContainer">
 					<div className="titleContainer">
 						<input
