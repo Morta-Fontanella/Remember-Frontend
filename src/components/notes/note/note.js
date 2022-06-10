@@ -5,9 +5,15 @@ import "./noteStyles.css";
 
 function Note({ setFormPopup, note, setCurrentId }) {
 	const [openColors, setOpenColors] = useState(false);
-	const toggleColors = () => setOpenColors(!openColors);
+	const toggleColors = () => {
+		setOpenOptions(false);
+		setOpenColors(!openColors);
+	};
 	const [openOptions, setOpenOptions] = useState(false);
-	const toggleOptions = () => setOpenOptions(!openOptions);
+	const toggleOptions = () => {
+		setOpenColors(false);
+		setOpenOptions(!openOptions);
+	};
 
 	const editButton = () => {
 		setCurrentId(note._id);
@@ -28,36 +34,43 @@ function Note({ setFormPopup, note, setCurrentId }) {
 						Created by {note.creator} {moment(note.createdAt).fromNow()}
 					</p>
 					<div className="buttonContainer">
-						<i
-							className="fa-solid fa-palette"
-							onKeyPress={() => toggleColors(!openColors)}
-							onClick={() => toggleColors(!openColors)}
-						></i>
-						{openColors ? (
-							<div className="colorPicker">
-								<div className="color red"></div>
-								<div className="color pink"></div>
-								<div className="color yellow"></div>
-								<div className="color green"></div>
-								<div className="color blue"></div>
-								<div className="color purple"></div>
-							</div>
-						) : null}
-						<i
-							className="fa-solid fa-ellipsis-vertical"
-							onKeyPress={() => toggleOptions(!openColors)}
-							onClick={() => toggleOptions(!openColors)}
-						></i>
-						{openOptions ? (
-							<div className="dropdownOptions">
-								<span className="edit" onClick={editButton}>
-									Edit
-								</span>
-								<span className="option" onClick={() => console.log("delete")}>
-									Delete
-								</span>
-							</div>
-						) : null}
+						<div>
+							<i
+								className="fa-solid fa-palette"
+								onKeyPress={() => toggleColors(!openColors)}
+								onClick={() => toggleColors(!openColors)}
+							></i>
+							{openColors ? (
+								<div className="colorPicker">
+									<div className="color red"></div>
+									<div className="color pink"></div>
+									<div className="color yellow"></div>
+									<div className="color green"></div>
+									<div className="color blue"></div>
+									<div className="color purple"></div>
+								</div>
+							) : null}
+						</div>
+						<div>
+							<i
+								className="fa-solid fa-ellipsis-vertical"
+								onKeyPress={() => toggleOptions(!openColors)}
+								onClick={() => toggleOptions(!openColors)}
+							></i>
+							{openOptions ? (
+								<div className="dropdownOptions">
+									<span className="edit" onClick={editButton}>
+										Edit
+									</span>
+									<span
+										className="option"
+										onClick={() => console.log("delete")}
+									>
+										Delete
+									</span>
+								</div>
+							) : null}
+						</div>
 					</div>
 				</div>
 			</div>

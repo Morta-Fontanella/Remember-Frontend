@@ -61,9 +61,7 @@
 }
 
 .colorPicker {
-	position: fixed;
-	margin-bottom: 6.2rem;
-	margin-right: 2rem;
+	position: absolute;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -86,8 +84,7 @@
 }
 
 .dropdownOptions {
-	position: fixed;
-	margin-bottom: 9rem;
+	position: absolute;
 	display: flex;
 	flex-direction: column;
 	background-color: var(--background-color-alternative);
