@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	background-color: var(--background-color-alternative);
+	width: 100%;
 	border-radius: 5px;
 	color: var(--text-color);
 }
@@ -57,6 +58,52 @@
 	background-color: #5050501e;
 	opacity: 100%;
 	transition: 0.2s;
+}
+
+.colorPicker {
+	position: fixed;
+	margin-bottom: 6.2rem;
+	margin-right: 2rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: var(--background-color-alternative);
+	border-radius: 5px;
+	box-shadow: #1f1f1f1e 0px 0px 5px;
+	padding: 0.5rem;
+}
+
+.colorPicker .color {
+	width: 1.3rem;
+	height: 1.3rem;
+	border-radius: 50%;
+	margin-right: 0.2rem;
+}
+
+.colorPicker .color:hover {
+	border: 1px solid #707070;
+	cursor: pointer;
+}
+
+.dropdownOptions {
+	position: fixed;
+	margin-bottom: 9rem;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color-alternative);
+	border-radius: 5px;
+	box-shadow: #1f1f1f1e 0px 0px 5px;
+}
+
+.dropdownOptions span {
+	display: block;
+	padding: 0.5rem;
+	width: 5rem;
+	cursor: pointer;
+}
+
+.dropdownOptions span:hover {
+	background-color: #5050501e;
 }
 
 .red {
