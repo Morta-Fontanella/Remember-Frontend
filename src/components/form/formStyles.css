@@ -21,6 +21,13 @@ form {
 	min-height: 10rem;
 }
 
+form img {
+	width: 100%;
+	object-fit: cover;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
 .textContainer {
 	display: flex;
 	flex-direction: column;

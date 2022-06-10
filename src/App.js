@@ -11,9 +11,9 @@ import "./appStyle.css";
 import logo from "./images/logo.png";
 
 const App = () => {
-	const dispatch = useDispatch();
 	const [formPopup, setFormPopup] = useState(false);
 	const [currentId, setCurrentId] = useState(null);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getNotes());

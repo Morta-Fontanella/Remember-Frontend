@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { deleteNote } from "../../../actions/notes";
 
 import "./noteStyles.css";
 
@@ -16,9 +17,15 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	};
 
 	const editButton = () => {
-		setCurrentId(note._id);
+		console.log("edit button " + note._id);
 		setFormPopup(true);
-		toggleOptions(!openColors);
+		setCurrentId(note._id);
+		setOpenOptions(!openOptions);
+	};
+
+	const deleteButton = () => {
+		setOpenOptions(!openOptions);
+		deleteNote(note._id);
 	};
 
 	return (
@@ -62,10 +69,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 									<span className="edit" onClick={editButton}>
 										Edit
 									</span>
-									<span
-										className="option"
-										onClick={() => console.log("delete")}
-									>
+									<span className="option" onClick={deleteButton}>
 										Delete
 									</span>
 								</div>

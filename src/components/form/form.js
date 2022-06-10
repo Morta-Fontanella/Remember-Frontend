@@ -5,12 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./formStyles.css";
 import { createNote, updateNote } from "../../actions/notes";
 
-function Form(props, setFormPopup, currentId, setCurrentId) {
+function Form(props) {
 	const dispatch = useDispatch();
-	const note = useSelector((state) =>
-		currentId ? state.notes.find((p) => p._id === currentId) : null
-	);
-
 	const [noteData, setNoteData] = useState({
 		creator: "",
 		title: "",
@@ -19,20 +15,26 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 		image: "",
 	});
 
+	const note = useSelector((state) =>
+		props.currentId
+			? state.notes.find((message) => message._id === props.currentId)
+			: null
+	);
+
 	useEffect(() => {
 		if (note) setNoteData(note);
 	}, [note]);
 
 	const clear = () => {
-		setCurrentId(null);
+		props.setCurrentId(null);
 		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (currentId === 0) {
-			dispatch(updateNote(currentId, noteData));
+		if (props.currentId === 0) {
+			dispatch(updateNote(props.currentId, noteData));
 		} else {
 			dispatch(createNote(noteData));
 		}
@@ -43,6 +45,7 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 	return props.trigger ? (
 		<div className="formContainer">
 			<form autoComplete="off" noValidate>
+				{note.image ? <img src={note.image} alt="note" /> : <div></div>}
 				<div className="textContainer">
 					<div className="titleContainer">
 						<input
@@ -54,7 +57,7 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 								setNoteData({ ...noteData, title: e.target.value })
 							}
 						></input>
-						<label class="fa-solid fa-image addImg">
+						<label className="fa-solid fa-image addImg">
 							<FileBase
 								className="fa-solid fa-image"
 								type="file"
