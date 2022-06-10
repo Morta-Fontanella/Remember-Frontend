@@ -25,21 +25,21 @@ function Form(props) {
 		if (note) setNoteData(note);
 	}, [note]);
 
-	const clear = () => {
+	/* 	const clear = () => {
 		props.setCurrentId(null);
 		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
-	};
+	}; */
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+		console.log("edit id " + props.currentId);
 		if (props.currentId === 0) {
-			dispatch(updateNote(props.currentId, noteData));
-		} else {
 			dispatch(createNote(noteData));
+		} else {
+			dispatch(updateNote(props.currentId, noteData));
 		}
 		props.setFormPopup(false);
-		clear();
+		//clear();
 	};
 
 	return props.trigger ? (

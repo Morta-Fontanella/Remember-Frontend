@@ -17,7 +17,6 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	};
 
 	const editButton = () => {
-		console.log("edit button " + note._id);
 		setFormPopup(true);
 		setCurrentId(note._id);
 		setOpenOptions(!openOptions);
