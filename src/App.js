@@ -12,6 +12,7 @@ import logo from "./images/logo.png";
 
 const App = () => {
 	const dispatch = useDispatch();
+	const [formPopup, setFormPopup] = useState(false);
 	const [currentId, setCurrentId] = useState(null);
 
 	useEffect(() => {
@@ -35,8 +36,12 @@ const App = () => {
 				</div>
 			</header>
 			<main>
-				<Notes setCurrentId={setCurrentId} />
-				<Form currentId={currentId} setCurrentId={setCurrentId} />
+				<Notes setFormPopup={setFormPopup} setCurrentId={setCurrentId} />
+				<Form
+					trigger={formPopup}
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
 			</main>
 		</div>
 	);

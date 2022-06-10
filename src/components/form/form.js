@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./formStyles.css";
 import { createNote, updateNote } from "../../actions/notes";
 
-const Form = (currentId, setCurrentId) => {
+function Form(props, currentId, setCurrentId) {
 	const dispatch = useDispatch();
 	const note = useSelector((state) =>
 		currentId ? state.notes.find((p) => p._id === currentId) : null
@@ -40,7 +40,7 @@ const Form = (currentId, setCurrentId) => {
 		clear();
 	};
 
-	return (
+	return props.trigger ? (
 		<div className="formContainer" onClick={clear}>
 			<form autoComplete="off" noValidate>
 				<div className="textContainer">
@@ -79,7 +79,7 @@ const Form = (currentId, setCurrentId) => {
 				</div>
 			</form>
 		</div>
-	);
-};
+	) : null;
+}
 
 export default Form;

@@ -3,11 +3,17 @@ import moment from "moment";
 
 import "./noteStyles.css";
 
-function Note({ note, setCurrentId }) {
+function Note({ setFormPopup, note, setCurrentId }) {
 	const [openColors, setOpenColors] = useState(false);
 	const toggleColors = () => setOpenColors(!openColors);
 	const [openOptions, setOpenOptions] = useState(false);
 	const toggleOptions = () => setOpenOptions(!openOptions);
+
+	const editButton = () => {
+		setCurrentId(note.id);
+		setFormPopup(true);
+		toggleOptions(!openColors);
+	};
 
 	return (
 		<div className={"note " + (note.color ? note.color : "")}>
@@ -44,7 +50,7 @@ function Note({ note, setCurrentId }) {
 						></i>
 						{openOptions ? (
 							<div className="dropdownOptions">
-								<span className="edit" onClick={() => setCurrentId(note._id)}>
+								<span className="edit" onClick={editButton}>
 									Edit
 								</span>
 								<span className="option" onClick={() => console.log("delete")}>
