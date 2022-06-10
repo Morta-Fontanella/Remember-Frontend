@@ -39,6 +39,7 @@ const App = () => {
 				<Notes setFormPopup={setFormPopup} setCurrentId={setCurrentId} />
 				<Form
 					trigger={formPopup}
+					setFormPopup={setFormPopup}
 					currentId={currentId}
 					setCurrentId={setCurrentId}
 				/>

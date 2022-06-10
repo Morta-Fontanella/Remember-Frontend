@@ -10,7 +10,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	const toggleOptions = () => setOpenOptions(!openOptions);
 
 	const editButton = () => {
-		setCurrentId(note.id);
+		setCurrentId(note._id);
 		setFormPopup(true);
 		toggleOptions(!openColors);
 	};

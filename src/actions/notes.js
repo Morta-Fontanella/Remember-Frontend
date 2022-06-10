@@ -12,6 +12,7 @@ export const getNotes = () => async (dispatch) => {
 
 export const createNote = (note) => async (dispatch) => {
 	try {
+		console.log("creaaateeee");
 		const { data } = await api.createNote(note);
 
 		dispatch({ type: "CREATE", payload: data });
@@ -22,6 +23,7 @@ export const createNote = (note) => async (dispatch) => {
 
 export const updateNote = (id, note) => async (dispatch) => {
 	try {
+		console.log("pasa por el update");
 		const { data } = await api.updateNote(id, note);
 
 		dispatch({ type: "UPDATE", payload: data });

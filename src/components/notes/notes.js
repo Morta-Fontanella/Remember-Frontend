@@ -6,15 +6,20 @@ import Loader from "../loader/loader";
 
 import "./notesStyles.css";
 
-const Notes = ({ setFormPopup, setCurrentId }) => {
+const Notes = ({ setFormPopup, note, setCurrentId }) => {
 	const notes = useSelector((state) => state.notes);
+
+	const newNote = () => {
+		setFormPopup(true);
+		setCurrentId(null);
+	};
 
 	return (
 		<>
 			<div className="notesContainer">
 				<div className="titleContainer">
 					<h2>Notes</h2>
-					<Button type="filled" onClick={() => setFormPopup(true)}>
+					<Button type="filled" onClick={newNote}>
 						New note
 					</Button>
 				</div>
@@ -24,7 +29,7 @@ const Notes = ({ setFormPopup, setCurrentId }) => {
 					<div className="notesGrid">
 						{notes.map((note) => (
 							<Note
-								/* key={note.id} es del padre no del hijo*/
+								key={note._id}
 								setFormPopup={setFormPopup}
 								note={note}
 								setCurrentId={setCurrentId}

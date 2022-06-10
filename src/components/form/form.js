@@ -5,12 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./formStyles.css";
 import { createNote, updateNote } from "../../actions/notes";
 
-function Form(props, currentId, setCurrentId) {
-	const dispatch = useDispatch();
-	const note = useSelector((state) =>
-		currentId ? state.notes.find((p) => p._id === currentId) : null
-	);
-
+function Form(props, setFormPopup, currentId, setCurrentId) {
 	const [noteData, setNoteData] = useState({
 		creator: "",
 		title: "",
@@ -18,30 +13,34 @@ function Form(props, currentId, setCurrentId) {
 		color: "",
 		image: "",
 	});
+	const note = useSelector((state) =>
+		currentId ? state.notes.find((p) => p._id === currentId) : null
+	);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (note) setNoteData(note);
+	}, [note]);
 
 	const clear = () => {
 		setCurrentId(null);
 		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
 	};
 
-	useEffect(() => {
-		if (note) setNoteData(note);
-		console.log(note);
-	}, [note]);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (currentId) {
+		if (currentId === 0) {
 			dispatch(updateNote(currentId, noteData));
 		} else {
 			dispatch(createNote(noteData));
 		}
 		clear();
+		props.setFormPopup(false);
 	};
 
 	return props.trigger ? (
-		<div className="formContainer" onClick={clear}>
+		<div className="formContainer">
 			<form autoComplete="off" noValidate>
 				<div className="textContainer">
 					<div className="titleContainer">
