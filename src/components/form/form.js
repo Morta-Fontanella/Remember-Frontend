@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import "./formStyles.css";
 import { createNote } from "../../actions/notes";
 
-const Form = () => {
+const Form = (currentId, setCurrentId) => {
 	const [noteData, setNoteData] = useState({
 		creator: "",
 		title: "",
