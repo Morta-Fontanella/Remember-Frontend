@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { getNotes } from "./actions/notes";
@@ -11,34 +11,35 @@ import "./appStyle.css";
 import logo from "./images/logo.png";
 
 const App = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const [currentId, setCurrentId] = useState(null);
 
-  useEffect(() => {
-    dispatch(getNotes());
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getNotes());
+	}, [dispatch]);
 
-  return (
-    <div id="wrapper">
-      <header>
-        <div className="logoContainer">
-          <img src={logo} alt="logo" />
-          <h2>Remember</h2>
-        </div>
-        <div className="userButtonsContainer">
-          <Button type="outlined" onClick={() => console.log("login")}>
-            Log in
-          </Button>
-          <Button type="filled" onClick={() => console.log("register")}>
-            Register
-          </Button>
-        </div>
-      </header>
-      <main>
-        <Notes />
-        <Form />
-      </main>
-    </div>
-  );
+	return (
+		<div id="wrapper">
+			<header>
+				<div className="logoContainer">
+					<img src={logo} alt="logo" />
+					<h2>Remember</h2>
+				</div>
+				<div className="userButtonsContainer">
+					<Button type="outlined" onClick={() => console.log("login")}>
+						Log in
+					</Button>
+					<Button type="filled" onClick={() => console.log("register")}>
+						Register
+					</Button>
+				</div>
+			</header>
+			<main>
+				<Notes setCurrentId={setCurrentId} />
+				<Form currentId={currentId} setCurrentId={setCurrentId} />
+			</main>
+		</div>
+	);
 };
 
 export default App;
