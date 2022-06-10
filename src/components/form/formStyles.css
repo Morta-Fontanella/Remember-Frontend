@@ -8,7 +8,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
 form {
@@ -81,8 +81,12 @@ form {
 	padding: 1rem;
 }
 
-.hidden {
-	display: none;
+.closeForm {
+	align-self: center;
+	font-size: 2rem;
+	margin: 1rem;
+	color: var(--background-color-alternative);
+	cursor: pointer;
 }
 
 .red {

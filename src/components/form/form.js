@@ -24,8 +24,8 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 	}, [note]);
 
 	const clear = () => {
-		//setCurrentId(null);
-		//setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
+		setCurrentId(null);
+		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
 	};
 
 	const handleSubmit = (e) => {
@@ -36,8 +36,8 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 		} else {
 			dispatch(createNote(noteData));
 		}
-		clear();
 		props.setFormPopup(false);
+		clear();
 	};
 
 	return props.trigger ? (
@@ -78,6 +78,10 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 					<i className="fa-solid fa-check" onClick={handleSubmit}></i>
 				</div>
 			</form>
+			<i
+				className="fa-solid fa-circle-xmark closeForm"
+				onClick={() => props.setFormPopup(false)}
+			></i>
 		</div>
 	) : null;
 }
