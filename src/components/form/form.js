@@ -54,14 +54,16 @@ function Form(props, setFormPopup, currentId, setCurrentId) {
 								setNoteData({ ...noteData, title: e.target.value })
 							}
 						></input>
-						<FileBase
-							className="fa-solid fa-image"
-							type="file"
-							multiple={false}
-							onDone={({ base64 }) => {
-								setNoteData({ ...noteData, image: base64 });
-							}}
-						/>
+						<label class="fa-solid fa-image addImg">
+							<FileBase
+								className="fa-solid fa-image"
+								type="file"
+								multiple={false}
+								onDone={({ base64 }) => {
+									setNoteData({ ...noteData, image: base64 });
+								}}
+							/>
+						</label>
 					</div>
 					<textarea
 						className="content"

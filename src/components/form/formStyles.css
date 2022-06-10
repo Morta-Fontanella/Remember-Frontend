@@ -35,7 +35,7 @@ form {
 	align-items: center;
 }
 
-.titleContainer i {
+.titleContainer .addImg {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -46,7 +46,11 @@ form {
 	opacity: 80%;
 }
 
-.titleContainer i:hover {
+.titleContainer .addImg input {
+	display: none;
+}
+
+.titleContainer .addImg:hover {
 	cursor: pointer;
 	background-color: #5050501e;
 	opacity: 100%;
@@ -116,4 +120,11 @@ form {
 
 .purple {
 	background: var(--note-purple);
+}
+
+/* Smartphone */
+@media only screen and (max-device-width: 640px) {
+	form {
+		width: 90%;
+	}
 }
