@@ -1,19 +1,20 @@
 import React from "react";
+import moment from "moment";
 
 import "./noteStyles.css";
 
-function Note(props) {
+function Note({ note }) {
 	return (
-		<div className={"note " + (props.color ? props.color : "")}>
-			{props.img ? <img src={props.img} alt="note" /> : <div></div>}
+		<div className={"note " + (note.color ? note.color : "")}>
+			{note.image ? <img src={note.image} alt="note" /> : <div></div>}
 			<div className="textContainer">
-				<h3>{props.title}</h3>
-				<p>{props.text}</p>
+				<h3>{note.title}</h3>
+				<p>{note.content}</p>
 			</div>
 			<div className="infoContainer">
 				<div className="bottomContainer">
 					<p>
-						Created by {props.creator} {props.date} days ago
+						Created by {note.creator} {moment(note.createdAt).fromNow()}
 					</p>
 					<div className="buttonContainer">
 						<i className="fa-solid fa-palette"></i>
