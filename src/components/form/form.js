@@ -78,7 +78,7 @@ function Form(props) {
 						}
 					></textarea>
 				</div>
-				<div className="buttonContainer">
+				<div className="formbuttonContainer">
 					<i className="fa-solid fa-palette"></i>
 					<i className="fa-solid fa-check" onClick={handleSubmit}></i>
 				</div>

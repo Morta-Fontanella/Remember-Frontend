@@ -84,12 +84,30 @@ form img {
 	overflow: hidden;
 }
 
-.buttonContainer {
+.formbuttonContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
 	padding: 1rem;
+}
+
+.formbuttonContainer i {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 50px;
+	font-size: 1rem;
+	opacity: 80%;
+}
+
+.formbuttonContainer i:hover {
+	cursor: pointer;
+	background-color: #5050501e;
+	opacity: 100%;
+	transition: 0.2s;
 }
 
 .closeForm {
