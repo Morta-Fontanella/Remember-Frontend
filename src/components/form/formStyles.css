@@ -89,6 +89,11 @@ form {
 	cursor: pointer;
 }
 
+.closeForm:hover {
+	color: #ff4433;
+	transition: 0.2s;
+}
+
 .red {
 	background-color: var(--note-red);
 }
