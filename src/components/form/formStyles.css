@@ -84,7 +84,7 @@ form img {
 	overflow: hidden;
 }
 
-.buttonContainer {
+.formbuttonContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
