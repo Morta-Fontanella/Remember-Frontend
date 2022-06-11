@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { deleteNote } from "../../../actions/notes";
+import { useDispatch } from "react-redux";
 
 import "./noteStyles.css";
 
 function Note({ setFormPopup, note, setCurrentId }) {
 	const [openColors, setOpenColors] = useState(false);
+	const dispatch = useDispatch();
 	const toggleColors = () => {
 		setOpenOptions(false);
 		setOpenColors(!openColors);
@@ -24,7 +26,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 
 	const deleteButton = () => {
 		setOpenOptions(!openOptions);
-		deleteNote(note._id);
+		dispatch(deleteNote(note._id));
 	};
 
 	return (
