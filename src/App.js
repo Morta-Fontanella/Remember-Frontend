@@ -17,7 +17,7 @@ const App = () => {
 
 	useEffect(() => {
 		dispatch(getNotes());
-	}, [formPopup, dispatch]);
+	}, [currentId, dispatch]);
 
 	return (
 		<div id="wrapper">

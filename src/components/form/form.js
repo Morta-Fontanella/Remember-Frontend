@@ -16,13 +16,13 @@ function Form(props) {
 	});
 
 	const note = useSelector((state) =>
-		props.currentId
-			? state.notes.find((message) => message._id === props.currentId)
-			: null
+		props.currentId ? state.notes.find((p) => p._id === props.currentId) : null
 	);
 
 	useEffect(() => {
-		if (note) setNoteData(note);
+		if (note) {
+			setNoteData(note);
+		}
 	}, [note]);
 
 	const clear = () => {
@@ -36,15 +36,28 @@ function Form(props) {
 			dispatch(createNote(noteData));
 		} else {
 			dispatch(updateNote(props.currentId, noteData));
+			/* window.location.reload(); */
 		}
 		props.setFormPopup(false);
 		clear();
-		window.location.reload();
+	};
+
+	const changeColor = (e) => {
+		noteData.color = e;
+	};
+
+	const closeButton = () => {
+		clear();
+		props.setFormPopup(false);
 	};
 
 	return props.trigger ? (
 		<div className="formContainer">
-			<form autoComplete="off" noValidate>
+			<form
+				autoComplete="off"
+				noValidate
+				className={note && note.color ? note.color : ""}
+			>
 				{note && note.image ? <img src={note.image} alt="note" /> : <div></div>}
 				<div className="textContainer">
 					<div className="titleContainer">
@@ -79,13 +92,39 @@ function Form(props) {
 					></textarea>
 				</div>
 				<div className="formbuttonContainer">
-					<i className="fa-solid fa-palette"></i>
+					<div className="colorPicker">
+						<div
+							className="color white"
+							onClick={() => changeColor(null)}
+						></div>
+						<div className="color red" onClick={() => changeColor("red")}></div>
+						<div
+							className="color pink"
+							onClick={() => changeColor("pink")}
+						></div>
+						<div
+							className="color yellow"
+							onClick={() => changeColor("yellow")}
+						></div>
+						<div
+							className="color green"
+							onClick={() => changeColor("green")}
+						></div>
+						<div
+							className="color blue"
+							onClick={() => changeColor("blue")}
+						></div>
+						<div
+							className="color purple"
+							onClick={() => changeColor("purple")}
+						></div>
+					</div>
 					<i className="fa-solid fa-check" onClick={handleSubmit}></i>
 				</div>
 			</form>
 			<i
 				className="fa-solid fa-circle-xmark closeForm"
-				onClick={() => props.setFormPopup(false)}
+				onClick={closeButton}
 			></i>
 		</div>
 	) : null;

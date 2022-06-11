@@ -69,7 +69,7 @@ form img {
 	font-family: var(--font-family);
 	width: 100%;
 	border: none;
-
+	background-color: transparent;
 	outline: none;
 }
 
@@ -121,30 +121,6 @@ form img {
 .closeForm:hover {
 	color: #ff4433;
 	transition: 0.2s;
-}
-
-.red {
-	background-color: var(--note-red);
-}
-
-.pink {
-	background: var(--note-pink);
-}
-
-.yellow {
-	background: var(--note-yellow);
-}
-
-.green {
-	background: var(--note-green);
-}
-
-.blue {
-	background: var(--note-blue);
-}
-
-.purple {
-	background: var(--note-purple);
 }
 
 /* Smartphone */

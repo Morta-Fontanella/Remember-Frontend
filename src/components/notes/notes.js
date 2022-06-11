@@ -27,14 +27,17 @@ const Notes = ({ setFormPopup, note, setCurrentId }) => {
 					<Loader />
 				) : (
 					<div className="notesGrid">
-						{notes.map((note) => (
-							<Note
-								key={note._id}
-								setFormPopup={setFormPopup}
-								note={note}
-								setCurrentId={setCurrentId}
-							/>
-						))}
+						{notes
+							.slice(0)
+							.reverse()
+							.map((note) => (
+								<Note
+									key={note._id}
+									setFormPopup={setFormPopup}
+									note={note}
+									setCurrentId={setCurrentId}
+								/>
+							))}
 					</div>
 				)}
 			</div>
