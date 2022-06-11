@@ -6,7 +6,8 @@ import Loader from "../loader/loader";
 
 import "./notesStyles.css";
 
-const Notes = ({ setFormPopup, note, setCurrentId }) => {
+const Notes = ({ setFormPopup, setCurrentId }) => {
+	var notekey = 0;
 	const notes = useSelector((state) => state.notes);
 
 	const newNote = () => {
@@ -32,7 +33,7 @@ const Notes = ({ setFormPopup, note, setCurrentId }) => {
 							.reverse()
 							.map((note) => (
 								<Note
-									key={note._id}
+									key={notekey++}
 									setFormPopup={setFormPopup}
 									note={note}
 									setCurrentId={setCurrentId}
