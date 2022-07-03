@@ -17,12 +17,12 @@ form {
 	background-color: var(--background-color-alternative);
 	border-radius: 5px;
 	color: var(--text-color);
-	width: 30rem;
-	min-height: 10rem;
+	max-height: 85%;
 }
 
 form img {
 	width: 100%;
+	max-height: 50%;
 	object-fit: cover;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
