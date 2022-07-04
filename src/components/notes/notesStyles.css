@@ -3,12 +3,15 @@
 	flex-direction: column;
 }
 
-.titleContainer {
+.notesContainer .titleContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	margin-bottom: 1rem;
+	padding: 0.6rem 0;
+	position: sticky;
+	top: 0px;
+	background-color: var(--background-color);
 }
 
 .titleContainer h2 {
