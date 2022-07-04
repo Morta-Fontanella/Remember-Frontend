@@ -1,10 +1,43 @@
 import React from "react";
+import Wave from "react-wavify";
+import Button from "../button/button";
+
+import "./loginStyles.css";
 
 const Login = () => {
 	return (
-		<div>
-			<h1>Login</h1>
-		</div>
+		<main>
+			<div className="mainContainer">
+				<div className="loginContainer">
+					<h3>Sign In</h3>
+					<form>
+						<label>Email</label>
+						<input type="email" name="email" />
+						<label>Password</label>
+						<input type="password" name="password" />
+						<Button type="filled">Sign In</Button>
+						<div className="divider">
+							<div className="line"></div>
+							<p>or</p>
+							<div className="line"></div>
+						</div>
+						<Button type="outlined">
+							<i class="fa-brands fa-google"></i>
+							Sign with google
+						</Button>
+					</form>
+				</div>
+			</div>
+			<Wave
+				paused={false}
+				options={{
+					height: 20,
+					amplitude: 30,
+					speed: 0.15,
+					points: 3,
+				}}
+			/>
+		</main>
 	);
 };
 

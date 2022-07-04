@@ -16,10 +16,10 @@ const NavBar = () => {
 			</NavLink>
 			<div className="userButtonsContainer">
 				<NavLink to="/login">
-					<Button type="outlined">Log in</Button>
+					<Button type="outlined">Sign in</Button>
 				</NavLink>
 				<NavLink to="/register">
-					<Button type="filled">Register</Button>
+					<Button type="filled">Sign up</Button>
 				</NavLink>
 			</div>
 		</header>

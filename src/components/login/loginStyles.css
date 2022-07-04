@@ -1,0 +1,76 @@
+main {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color-alternative);
+}
+
+.mainContainer {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.loginContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: max(20rem, 0%);
+	padding: 2rem;
+}
+
+.loginContainer form {
+	width: 100%;
+}
+
+.loginContainer form label {
+	font-size: 0.8rem;
+}
+
+input {
+	border: 1px solid var(--disabled-color);
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	margin-bottom: 0.5rem;
+	width: 100%;
+}
+
+input:focus {
+	outline: none;
+	border: 1px solid var(--primary-color);
+}
+
+.divider {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	color: var(--disabled-color-contrast);
+}
+
+.divider .line {
+	background-color: var(--disabled-color);
+	height: 1px;
+	width: 100%;
+}
+
+.divider p {
+	display: block;
+	margin: 0.5rem;
+}
+
+.button {
+	align-items: center;
+}
+
+.button i {
+	margin: 0 0.35rem;
+}
+
+svg {
+	transform: translateY(0.2rem);
+}
+
+path {
+	fill: var(--primary-color);
+}

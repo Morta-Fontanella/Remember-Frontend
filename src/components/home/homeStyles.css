@@ -1,0 +1,9 @@
+main#home {
+	padding: 1rem 3rem;
+}
+
+@media only screen and (max-device-width: 640px) {
+	main#home {
+		padding: 1.2rem;
+	}
+}
