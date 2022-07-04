@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Wave from "react-wavify";
 import Button from "../button/button";
 
@@ -6,14 +7,19 @@ import "./loginStyles.css";
 
 const Login = () => {
 	return (
-		<main>
+		<main id="login">
 			<div className="mainContainer">
 				<div className="loginContainer">
 					<h3>Sign In</h3>
 					<form>
 						<label>Email</label>
 						<input type="email" name="email" />
-						<label>Password</label>
+						<div className="passwordTitle">
+							<label>Password</label>
+							<NavLink to="/changePass">
+								<a>Forgot password?</a>
+							</NavLink>
+						</div>
 						<input type="password" name="password" />
 						<Button type="filled">Sign In</Button>
 						<div className="divider">
