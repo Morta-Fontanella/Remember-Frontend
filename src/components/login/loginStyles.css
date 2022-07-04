@@ -24,6 +24,12 @@ main#login {
 	width: 100%;
 }
 
+.loginContainer h3 {
+	display: block;
+	font-weight: 400;
+	margin: 0.5rem 0;
+}
+
 .loginContainer form label {
 	font-size: 0.8rem;
 }
