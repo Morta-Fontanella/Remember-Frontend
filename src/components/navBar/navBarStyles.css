@@ -30,6 +30,23 @@ header a {
 	color: var(--text-color-primary);
 }
 
+.rightContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.rightContainer i {
+	font-size: 1.2rem;
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.rightContainer i:hover {
+	opacity: 0.8;
+}
+
 .userButtonsContainer {
 	display: flex;
 	flex-direction: row;

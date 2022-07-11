@@ -34,7 +34,7 @@ main#login {
 	font-size: 0.8rem;
 }
 
-input {
+.loginContainer form input {
 	border: 1px solid var(--disabled-color);
 	border-radius: 0.5rem;
 	padding: 0.5rem;
@@ -42,7 +42,7 @@ input {
 	width: 100%;
 }
 
-input:focus {
+.loginContainer form input:focus {
 	outline: none;
 	border: 1px solid var(--primary-color);
 }
