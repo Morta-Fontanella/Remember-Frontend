@@ -30,7 +30,7 @@ const NavBar = () => {
 
 	return (
 		<header>
-			<NavLink to="/home">
+			<NavLink to="/">
 				<div className="logoContainer">
 					<img src={logo} alt="logo" />
 					<h2>Remember</h2>
