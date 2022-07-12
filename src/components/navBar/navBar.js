@@ -39,10 +39,10 @@ const NavBar = () => {
 			<div className="rightContainer">
 				<i className="fa-solid fa-moon " onClick={changeMode}></i>
 				<div className="userButtonsContainer">
-					<NavLink to="/login">
+					<NavLink to="/auth" state={{ isSignup: false }}>
 						<Button type="outlined">Sign in</Button>
 					</NavLink>
-					<NavLink to="/register">
+					<NavLink to="/auth" state={{ isSignup: true }}>
 						<Button type="filled">Sign up</Button>
 					</NavLink>
 				</div>

@@ -1,4 +1,4 @@
-main#login {
+main#auth {
 	display: flex;
 	flex-direction: column;
 	background-color: var(--background-color-alternative);
@@ -12,7 +12,7 @@ main#login {
 	align-items: center;
 }
 
-.loginContainer {
+.authContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -20,21 +20,21 @@ main#login {
 	padding: 2rem;
 }
 
-.loginContainer form {
+.authContainer form {
 	width: 100%;
 }
 
-.loginContainer h3 {
+.authContainer h3 {
 	display: block;
 	font-weight: 400;
 	margin: 0.5rem 0;
 }
 
-.loginContainer form label {
+.authContainer form label {
 	font-size: 0.8rem;
 }
 
-.loginContainer form input {
+input {
 	border: 1px solid var(--disabled-color);
 	border-radius: 0.5rem;
 	padding: 0.5rem;
@@ -42,7 +42,7 @@ main#login {
 	width: 100%;
 }
 
-.loginContainer form input:focus {
+input:focus {
 	outline: none;
 	border: 1px solid var(--primary-color);
 }

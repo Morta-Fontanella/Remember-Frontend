@@ -9,8 +9,7 @@ import reducers from "./reducers";
 
 import App from "./App";
 import Home from "./components/home/home";
-import Login from "./components/login/login";
-import Register from "./components/register/register";
+import Auth from "./components/auth/auth";
 import ChangePass from "./components/changePass/changePass";
 
 const container = document.getElementById("root");
@@ -25,8 +24,7 @@ root.render(
 					<Route path="/" element={<App />}>
 						<Route index element={<Home />} />
 						<Route path="home" element={<Home />} />
-						<Route path="login" element={<Login />} />
-						<Route path="register" element={<Register />} />
+						<Route path="auth" element={<Auth />} />
 						<Route path="changePass" element={<ChangePass />} />
 						<Route
 							path="*"
