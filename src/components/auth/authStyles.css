@@ -94,3 +94,7 @@ svg {
 path {
 	fill: var(--primary-color);
 }
+
+.googleButton iframe {
+	margin: 0 !important;
+}
