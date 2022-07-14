@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
 import Wave from "react-wavify";
 import Button from "../button/button";
@@ -54,10 +53,10 @@ const Auth = () => {
 				"345095198176-e7h80fb0p4ltuib1foohfim062h2p78r.apps.googleusercontent.com",
 			callback: handleCallbackResponse,
 		});
-		google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-			theme: "outline",
-			size: "large",
-		});
+		google.accounts.id.renderButton(
+			document.getElementById("googleSignIn"),
+			{}
+		);
 	}, []);
 
 	return (
@@ -121,24 +120,7 @@ const Auth = () => {
 							<p>or</p>
 							<div className="line"></div>
 						</div>
-						<div id="signInDiv"></div>
-						<GoogleLogin
-
-						/* clientId="345095198176-e7h80fb0p4ltuib1foohfim062h2p78r.apps.googleusercontent.com"
-							render={(renderProps) => (
-								<Button
-									design="outlined"
-									onClick={renderProps.onClick}
-									disabled={renderProps.disabled}
-								>
-									<i className="fa-brands fa-google"></i>
-									Sign with google
-								</Button>
-							)}
-							onSuccess={googleSuccess}
-							onFailure={googleFailure}
-							cookiePolicity="single_host_origin" */
-						/>
+						<div id="googleSignIn" className="googleButton"></div>
 					</form>
 				</div>
 			</div>
