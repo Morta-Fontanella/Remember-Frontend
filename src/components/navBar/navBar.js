@@ -12,14 +12,6 @@ const NavBar = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 
-	/* 	const logout = () => {
-		dispatch({ type: actionType.LOGOUT });
-
-		navigate.push("/");
-
-		setUser(null);
-	}; */
-
 	function handleSignOut(event) {
 		dispatch({ type: actionType.LOGOUT });
 		setUser(null);
@@ -63,12 +55,14 @@ const NavBar = () => {
 				<i className="fa-solid fa-moon " onClick={changeMode}></i>
 				<div className="userButtonsContainer">
 					{user && (
-						<div className="containerAvatar">
+						<div className="userContainer">
 							<img className="avatar" src={user.picture} alt={user.name}></img>
-							<h3 className="avatarName">{user.name}</h3>
-							<Button design="filled" onClick={handleSignOut}>
-								Logout
-							</Button>
+							<h3 className="userName">{user.name}</h3>
+							<div className="dropdownMenu">
+								<div className="Item" onClick={handleSignOut}>
+									Sign Out
+								</div>
+							</div>
 						</div>
 					)}
 					{!user && (
