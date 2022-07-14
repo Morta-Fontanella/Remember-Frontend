@@ -21,6 +21,7 @@ const NavBar = () => {
 	}; */
 
 	function handleSignOut(event) {
+		dispatch({ type: actionType.LOGOUT });
 		setUser(null);
 	}
 

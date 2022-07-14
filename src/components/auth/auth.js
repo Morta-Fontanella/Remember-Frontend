@@ -42,6 +42,7 @@ const Auth = () => {
 		setUser(userObject);
 		localStorage.setItem("profile", JSON.stringify(userObject));
 		console.log(userObject);
+
 		<Navigate to={"/"} replace={true} />;
 	}
 
