@@ -41,7 +41,6 @@ const Auth = () => {
 		var userObject = jwt_decode(response.credential);
 		setUser(userObject);
 		localStorage.setItem("profile", JSON.stringify(userObject));
-		console.log(userObject);
 
 		<Navigate to={"/"} replace={true} />;
 	}

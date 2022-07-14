@@ -25,8 +25,6 @@ const NavBar = () => {
 		setUser(null);
 	}
 
-	console.log("user: " + user);
-
 	useEffect(() => {
 		const token = user?.token;
 
