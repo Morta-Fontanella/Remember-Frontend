@@ -5,8 +5,8 @@ import "./buttonStyles.css";
 function Button(props) {
 	return (
 		<button
-			type="button"
-			className={"button " + (props.type ? props.type : "")}
+			type={props.type ? props.type : "button"}
+			className={"button " + (props.design ? props.design : "")}
 			disabled={props.disabled}
 			onClick={props.onClick}
 		>

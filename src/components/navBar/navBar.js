@@ -1,11 +1,37 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import logo from "../../images/logo.png";
 import Button from "../button/button";
 
 import "./navBarStyles.css";
+import * as actionType from "../../constants/actionTypes";
 
 const NavBar = () => {
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+	const dispatch = useDispatch();
+	const location = useLocation();
+
+	/* 	const logout = () => {
+		dispatch({ type: actionType.LOGOUT });
+
+		navigate.push("/");
+
+		setUser(null);
+	}; */
+
+	function handleSignOut(event) {
+		setUser(null);
+	}
+
+	console.log("user: " + user);
+
+	useEffect(() => {
+		const token = user?.token;
+
+		setUser(JSON.parse(localStorage.getItem("profile")));
+	}, [location]);
+
 	var storedTheme =
 		localStorage.getItem("theme") ||
 		(window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -13,8 +39,6 @@ const NavBar = () => {
 			: "light");
 	if (storedTheme)
 		document.documentElement.setAttribute("data-theme", storedTheme);
-
-	var currentTheme = document.documentElement.getAttribute("data-theme");
 
 	const changeMode = () => {
 		var currentTheme = document.documentElement.getAttribute("data-theme");
@@ -39,12 +63,25 @@ const NavBar = () => {
 			<div className="rightContainer">
 				<i className="fa-solid fa-moon " onClick={changeMode}></i>
 				<div className="userButtonsContainer">
-					<NavLink to="/auth" state={{ isSignup: false }}>
-						<Button type="outlined">Sign in</Button>
-					</NavLink>
-					<NavLink to="/auth" state={{ isSignup: true }}>
-						<Button type="filled">Sign up</Button>
-					</NavLink>
+					{user && (
+						<div className="containerAvatar">
+							<img className="avatar" src={user.picture} alt={user.name}></img>
+							<h3 className="avatarName">{user.name}</h3>
+							<Button design="filled" onClick={handleSignOut}>
+								Logout
+							</Button>
+						</div>
+					)}
+					{!user && (
+						<>
+							<NavLink to="/auth" state={{ isSignup: false }}>
+								<Button design="outlined">Sign in</Button>
+							</NavLink>
+							<NavLink to="/auth" state={{ isSignup: true }}>
+								<Button design="filled">Sign up</Button>
+							</NavLink>
+						</>
+					)}
 				</div>
 			</div>
 		</header>

@@ -20,7 +20,7 @@ const Notes = ({ setFormPopup, setCurrentId }) => {
 			<div className="notesContainer">
 				<div className="titleContainer">
 					<h2>Notes</h2>
-					<Button type="filled" onClick={newNote}>
+					<Button design={"filled"} onClick={newNote}>
 						New note
 					</Button>
 				</div>
