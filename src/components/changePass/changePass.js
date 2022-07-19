@@ -6,31 +6,29 @@ import "../auth/authStyles.css";
 
 const ChangePass = () => {
 	return (
-		<div>
-			<main id="auth">
-				<div className="mainContainer">
-					<div className="authContainer">
-						<h3>Forgot password?</h3>
-						<form>
-							<label>email</label>
-							<input type="email" name="email" />
-							<Button type="submit" design="filled">
-								Send a new password
-							</Button>
-						</form>
-					</div>
+		<main id="auth">
+			<div className="mainContainer">
+				<div className="authContainer">
+					<h3>Forgot password?</h3>
+					<form>
+						<label>email</label>
+						<input type="email" name="email" />
+						<Button type="submit" design="filled">
+							Send a new password
+						</Button>
+					</form>
 				</div>
-				<Wave
-					paused={false}
-					options={{
-						height: 20,
-						amplitude: 30,
-						speed: 0.15,
-						points: 3,
-					}}
-				/>
-			</main>
-		</div>
+			</div>
+			<Wave
+				paused={false}
+				options={{
+					height: 20,
+					amplitude: 30,
+					speed: 0.15,
+					points: 3,
+				}}
+			/>
+		</main>
 	);
 };
 
