@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, Navigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import Wave from "react-wavify";
@@ -7,6 +7,7 @@ import Button from "../button/button";
 import { signin, signup } from "../../actions/auth";
 
 import "./authStyles.css";
+import * as actionType from "../../constants/actionTypes";
 const inistialState = {
 	name: "",
 	lastName: "",
@@ -21,6 +22,10 @@ const Auth = () => {
 	const dispatch = useDispatch();
 	const [user, setUser] = useState({});
 	const [formData, setformData] = useState(inistialState);
+	const navigate = useNavigate();
+
+	dispatch({ type: actionType.LOGOUT });
+	setUser(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -41,7 +46,7 @@ const Auth = () => {
 		setUser(userObject);
 		localStorage.setItem("profile", JSON.stringify(userObject));
 
-		<Navigate to={"/"} replace={true} />;
+		navigate("../#", { replace: true });
 	}
 
 	useEffect(() => {
