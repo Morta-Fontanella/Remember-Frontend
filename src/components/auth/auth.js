@@ -7,7 +7,7 @@ import Button from "../button/button";
 import { signin, signup } from "../../actions/auth";
 
 import "./authStyles.css";
-import * as actionType from "../../constants/actionTypes";
+
 const inistialState = {
 	name: "",
 	lastName: "",
@@ -18,14 +18,16 @@ const inistialState = {
 
 const Auth = () => {
 	const location = useLocation();
-	const { isSignup } = location.state;
 	const dispatch = useDispatch();
 	const [user, setUser] = useState({});
 	const [formData, setformData] = useState(inistialState);
 	const navigate = useNavigate();
 
-	dispatch({ type: actionType.LOGOUT });
-	setUser(null);
+	if (location.state === null) {
+		var { isSignup } = false;
+	} else {
+		var { isSignup } = location.state;
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
