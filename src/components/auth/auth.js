@@ -36,7 +36,6 @@ const Auth = () => {
 		} else {
 			dispatch(signin(formData));
 		}
-		console.log(formData);
 	};
 
 	const handleChange = (e) => {
@@ -110,11 +109,7 @@ const Auth = () => {
 							isSignup && (
 								<>
 									<label>Confirm Password</label>
-									<input
-										type="password"
-										name="confirmPassword"
-										onChange={handleChange}
-									/>
+									<input type="password" name="confirmPassword" />
 								</>
 							)
 						}
