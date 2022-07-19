@@ -34,15 +34,17 @@ main#auth {
 	font-size: 0.8rem;
 }
 
-input {
+.authContainer form input {
 	border: 1px solid var(--disabled-color);
+	background-color: var(--background-color-alternative);
+	color: var(--text-color);
 	border-radius: 0.5rem;
 	padding: 0.5rem;
 	margin-bottom: 0.5rem;
 	width: 100%;
 }
 
-input:focus {
+.authContainer form input:focus {
 	outline: none;
 	border: 1px solid var(--primary-color);
 }
