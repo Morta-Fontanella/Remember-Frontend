@@ -43,6 +43,11 @@ const NavBar = () => {
 		localStorage.setItem("theme", targetTheme);
 	};
 
+	const toggleDropdownMenu = () => {
+		const userMenu = document.getElementById("dropdownMenu");
+		userMenu.classList.toggle("show");
+	};
+
 	return (
 		<header>
 			<NavLink to="/">
@@ -55,11 +60,18 @@ const NavBar = () => {
 				<i className="fa-solid fa-moon " onClick={changeMode}></i>
 				<div className="userButtonsContainer">
 					{user && (
-						<div className="userContainer">
-							<img className="avatar" src={user.picture} alt={user.name}></img>
-							<h3 className="userName">{user.name}</h3>
-							<div className="dropdownMenu">
+						<div className="userMenuContainer">
+							<div className="userContainer" onClick={toggleDropdownMenu}>
+								<img
+									className="avatar"
+									src={user.picture}
+									alt={user.name}
+								></img>
+								<h3 className="userName">{user.name}</h3>
+							</div>
+							<div id="dropdownMenu">
 								<div className="Item" onClick={handleSignOut}>
+									<i class="fa-solid fa-right-from-bracket"></i>
 									Sign Out
 								</div>
 							</div>
