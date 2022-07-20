@@ -8,6 +8,7 @@ import "./notesStyles.css";
 
 const Notes = ({ setFormPopup, setCurrentId }) => {
 	var notekey = 0;
+	const user = JSON.parse(localStorage.getItem(`profile`));
 	const notes = useSelector((state) => state.notes);
 
 	const newNote = () => {
@@ -20,9 +21,11 @@ const Notes = ({ setFormPopup, setCurrentId }) => {
 			<div className="notesContainer">
 				<div className="titleContainer">
 					<h2>Notes</h2>
-					<Button design={"filled"} onClick={newNote}>
-						New note
-					</Button>
+					{user && (
+						<Button design={"filled"} onClick={newNote}>
+							New note
+						</Button>
+					)}
 				</div>
 				{!notes.length ? (
 					<Loader />
