@@ -19,7 +19,6 @@ const NavBar = () => {
 
 	useEffect(() => {
 		const token = user?.token;
-
 		setUser(JSON.parse(localStorage.getItem("profile")));
 	}, [location]);
 
@@ -48,6 +47,32 @@ const NavBar = () => {
 		userMenu.classList.toggle("show");
 	};
 
+	function userName() {
+		if (user.name) {
+			return user.name;
+		} else {
+			return user.result.name;
+		}
+	}
+	function userAvatar() {
+		if (user.name) {
+			return <img className="avatar" src={user.picture} alt={user.name}></img>;
+		} else {
+			if (!user.result.avatar) {
+				return <i class="fas fa-user-circle"></i>;
+			}
+			{
+				return (
+					<img
+						className="avatar"
+						src={user.result.avatar}
+						alt={user.name}
+					></img>
+				);
+			}
+		}
+	}
+
 	return (
 		<header>
 			<NavLink to="/">
@@ -62,16 +87,12 @@ const NavBar = () => {
 					{user && (
 						<div className="userMenuContainer">
 							<div className="userContainer" onClick={toggleDropdownMenu}>
-								<img
-									className="avatar"
-									src={user.picture}
-									alt={user.name}
-								></img>
-								<h3 className="userName">{user.name}</h3>
+								<div>{userAvatar()}</div>
+								<h3 className="userName">{userName()}</h3>
 							</div>
 							<div id="dropdownMenu">
 								<div className="Item" onClick={handleSignOut}>
-									<i class="fa-solid fa-right-from-bracket"></i>
+									<i className="fa-solid fa-right-from-bracket"></i>
 									Sign Out
 								</div>
 							</div>
