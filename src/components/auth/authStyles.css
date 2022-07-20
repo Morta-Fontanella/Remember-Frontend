@@ -30,19 +30,6 @@ main#auth {
 	margin: 0.5rem 0;
 }
 
-.passwordTitle {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.passwordTitle a {
-	color: var(--primary-color);
-	text-decoration: none;
-	font-size: 0.7rem;
-}
-
 .divider {
 	display: flex;
 	flex-direction: row;

@@ -81,7 +81,7 @@ const Auth = () => {
 										name="name"
 										onChange={handleChange}
 										errorMessage="Please enter your name"
-										pattern="^[a-zA-Z]{2,20}$"
+										pattern="^[a-zA-Zñáéíóúü ]{2,}+$"
 										required={true}
 									></FormInput>
 									<FormInput
@@ -89,7 +89,7 @@ const Auth = () => {
 										name="lastName"
 										onChange={handleChange}
 										errorMessage="Please enter your last name"
-										pattern="^[a-zA-Z]{2,20}$"
+										pattern="^[a-zA-Zñáéíóúü ]{2,}+$"
 										required={true}
 									></FormInput>
 								</>
@@ -101,41 +101,32 @@ const Auth = () => {
 							type="email"
 							onChange={handleChange}
 							errorMessage="Please enter a valid email"
-							required={true}
+							required={isSignup}
 						></FormInput>
-						<div className="passwordTitle">
-							<label>Password</label>
-
-							{
-								// Sign in Show "Forgot Password"
-								!isSignup && (
-									<NavLink to="/changePass">
-										<a>Forgot password?</a>
-									</NavLink>
-								)
-							}
-						</div>
-						<input
-							//type={showPassword ? "text" : "password"}
-							//handleShowPassword={handleShowPassword}
-							onChange={handleChange}
+						<FormInput
+							title="Password"
 							name="password"
 							type="password"
-						></input>
-						<p id="passwordError" className="validationError">
-							Error
-						</p>
-
+							onChange={handleChange}
+							errorMessage="Please enter a valid password"
+							pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"
+							required={isSignup}
+							isSignup={!isSignup}
+							linkPath="/changePass"
+							linkText="Forgot Password?"
+						></FormInput>
 						{
 							// Sign up Confirm Password
 							isSignup && (
-								<>
-									<label>Confirm Password</label>
-									<input type="password" name="confirmPassword" />
-									<p id="confirmPasswordError" className="validationError">
-										Error
-									</p>
-								</>
+								<FormInput
+									title="Confirm password"
+									name="ConfirmPassword"
+									type="password"
+									onChange={handleChange}
+									errorMessage="Doesn't match with password"
+									pattern={formData.password}
+									required={true}
+								></FormInput>
 							)
 						}
 						<Button type="submit" design="filled" onClick={handleSubmit}>
