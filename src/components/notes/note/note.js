@@ -35,7 +35,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 			<div className="infoContainer">
 				<div className="bottomContainer">
 					<p>
-						Created by {note.creator} {moment(note.createdAt).fromNow()}
+						Created by {note.name} {moment(note.createdAt).fromNow()}
 					</p>
 					<div className="buttonContainer">
 						<i className="fa-solid fa-trash" onClick={deleteButton}></i>

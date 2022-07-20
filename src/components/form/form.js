@@ -7,8 +7,8 @@ import { createNote, updateNote } from "../../actions/notes";
 
 function Form(props) {
 	const dispatch = useDispatch();
+	const user = JSON.parse(localStorage.getItem(`profile`));
 	const [noteData, setNoteData] = useState({
-		creator: "",
 		title: "",
 		content: "",
 		color: "",
@@ -27,15 +27,17 @@ function Form(props) {
 
 	const clear = () => {
 		props.setCurrentId(null);
-		setNoteData({ creator: "", title: "", content: "", color: "", image: "" });
+		setNoteData({ title: "", content: "", color: "", image: "" });
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (props.currentId === null) {
-			dispatch(createNote(noteData));
+			dispatch(createNote({ ...noteData, name: user?.result?.name }));
 		} else {
-			dispatch(updateNote(props.currentId, noteData));
+			dispatch(
+				updateNote(props.currentId, { ...noteData, name: user?.result?.name })
+			);
 			/* window.location.reload(); */
 		}
 		props.setFormPopup(false);
