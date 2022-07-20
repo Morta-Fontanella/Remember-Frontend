@@ -1,0 +1,41 @@
+.formInput {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.5rem;
+}
+
+.formInput label {
+	display: block;
+	font-size: 0.8rem;
+	margin-bottom: 0.1rem;
+}
+
+.formInput input {
+	border: 1px solid var(--disabled-color);
+	background-color: var(--background-color-alternative);
+	color: var(--text-color);
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	width: 100%;
+	outline: none;
+}
+
+.formInput input:invalid {
+	border: 1px solid var(--error-color);
+}
+
+.formInput input:focus {
+	outline: none;
+	border: 1px solid var(--primary-color);
+}
+
+.formInput .errorMessage {
+	color: var(--error-color);
+	font-size: 0.8rem;
+	margin-top: 0.1rem;
+	display: none;
+}
+
+.formInput input:invalid ~ .errorMessage {
+	display: block;
+}

@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import Wave from "react-wavify";
+import FormInput from "../formInput/formInput";
 import Button from "../button/button";
 import { signin, signup } from "../../actions/auth";
 
@@ -75,15 +76,33 @@ const Auth = () => {
 							// Sign up " Show Name and Last Name"
 							isSignup && (
 								<>
-									<label>Name</label>
-									<input type="text" name="name" onChange={handleChange} />
-									<label>Last Name</label>
-									<input type="text" name="lastName" onChange={handleChange} />
+									<FormInput
+										title="Name"
+										name="name"
+										onChange={handleChange}
+										errorMessage="Please enter your name"
+										pattern="^[a-zA-Z]{2,20}$"
+										required={true}
+									></FormInput>
+									<FormInput
+										title="Last Name"
+										name="lastName"
+										onChange={handleChange}
+										errorMessage="Please enter your last name"
+										pattern="^[a-zA-Z]{2,20}$"
+										required={true}
+									></FormInput>
 								</>
 							)
 						}
-						<label>Email</label>
-						<input type="email" name="email" onChange={handleChange} />
+						<FormInput
+							title="Email"
+							name="email"
+							type="email"
+							onChange={handleChange}
+							errorMessage="Please enter a valid email"
+							required={true}
+						></FormInput>
 						<div className="passwordTitle">
 							<label>Password</label>
 
@@ -103,6 +122,9 @@ const Auth = () => {
 							name="password"
 							type="password"
 						></input>
+						<p id="passwordError" className="validationError">
+							Error
+						</p>
 
 						{
 							// Sign up Confirm Password
@@ -110,6 +132,9 @@ const Auth = () => {
 								<>
 									<label>Confirm Password</label>
 									<input type="password" name="confirmPassword" />
+									<p id="confirmPasswordError" className="validationError">
+										Error
+									</p>
 								</>
 							)
 						}

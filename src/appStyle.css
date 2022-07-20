@@ -18,6 +18,7 @@ html {
 	--primary-color-contrast: #ffffff;
 	--disabled-color: #d9d9d9;
 	--disabled-color-contrast: #888888;
+	--error-color: #ff0000;
 	--transparent-color: #16181c30;
 	--note-red: #f28b82;
 	--note-pink: #fdcfe8;
@@ -35,6 +36,7 @@ html[data-theme="dark"] {
 	--primary-color-contrast: #ffffff;
 	--disabled-color: #d9d9d9;
 	--disabled-color-contrast: #888888;
+	--error-color: #ff0000;
 	--transparent-color: #e7e9ea30;
 	--note-red: #5c2b29;
 	--note-pink: #5b2245;
