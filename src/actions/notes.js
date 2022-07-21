@@ -14,7 +14,7 @@ export const getNotes = () => async (dispatch) => {
 export const createNote = (note) => async (dispatch) => {
 	try {
 		const { data } = await api.createNote(note);
-		console.log(" denddtro try catch");
+
 		dispatch({ type: CREATE, payload: data });
 	} catch (error) {
 		console.log(error);
