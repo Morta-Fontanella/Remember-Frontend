@@ -36,6 +36,8 @@ const Auth = () => {
 		} else {
 			dispatch(signin(formData));
 		}
+
+		navigate("../#", { replace: true });
 	};
 
 	const handleChange = (e) => {
@@ -45,7 +47,6 @@ const Auth = () => {
 	function handleCallbackResponse(response) {
 		var userObject = jwt_decode(response.credential);
 		localStorage.setItem("profile", JSON.stringify(userObject));
-
 		navigate("../#", { replace: true });
 	}
 
@@ -96,9 +97,9 @@ const Auth = () => {
 						<FormInput
 							title="Email"
 							name="email"
-							type="email"
 							onChange={handleChange}
 							errorMessage="Please enter a valid email"
+							pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
 							required={isSignup}
 						></FormInput>
 						<FormInput

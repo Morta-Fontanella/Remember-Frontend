@@ -24,8 +24,8 @@ function FormInput(props) {
 				name={props.name}
 				onChange={props.onChange}
 				value={props.value}
-				pattern={props.pattern ? props.pattern : ""}
-				required={props.required ? props.required : false}
+				pattern={!props.isSignup && (props.pattern ? props.pattern : "")}
+				required={!props.isSignup && (props.required ? props.required : false)}
 				onBlur={handleFocus}
 				focused={focused.toString()}
 			/>
