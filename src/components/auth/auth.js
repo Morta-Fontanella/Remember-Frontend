@@ -46,7 +46,28 @@ const Auth = () => {
 
 	function handleCallbackResponse(response) {
 		var userObject = jwt_decode(response.credential);
-		localStorage.setItem("profile", JSON.stringify(userObject));
+		const sign = require("jwt-encode");
+		const secret = "test";
+		const token = sign(
+			{
+				email: userObject.email,
+				id: userObject.jti,
+				iat: 1658443530,
+				exp: 1658445330,
+			},
+			secret
+		);
+
+		var user = {
+			jti: userObject.jti,
+			name: userObject.name,
+			email: userObject.email,
+			picture: userObject.picture,
+			token: token,
+		};
+		console.log(userObject);
+		console.log(user);
+		localStorage.setItem("profile", JSON.stringify(user));
 		navigate("../#", { replace: true });
 	}
 

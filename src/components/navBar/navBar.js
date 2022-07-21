@@ -28,13 +28,13 @@ const NavBar = () => {
 	};
 
 	useEffect(() => {
-		const token = user?.jti;
+		const token = user?.token;
 
-		if (token) {
-			/* const decodedToken = decode(token); */
+		/* 		if (token) {
+			const decodedToken = decode(token);
 
-			if (token.exp * 1000 < new Date().getTime()) signOut();
-		}
+			if (decodedToken.exp * 1000 < new Date().getTime()) signOut();
+		} */
 
 		setUser(JSON.parse(localStorage.getItem("profile")));
 	}, [location]);
