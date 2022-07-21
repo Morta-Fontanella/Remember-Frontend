@@ -31,9 +31,9 @@ const NavBar = () => {
 		const token = user?.jti;
 
 		if (token) {
-			const decodedToken = decode(token);
+			/* const decodedToken = decode(token); */
 
-			if (decodedToken.exp * 1000 < new Date().getTime()) signOut();
+			if (token.exp * 1000 < new Date().getTime()) signOut();
 		}
 
 		setUser(JSON.parse(localStorage.getItem("profile")));

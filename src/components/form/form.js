@@ -8,6 +8,15 @@ import { createNote, updateNote } from "../../actions/notes";
 function Form(props) {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem(`profile`));
+	var googleAcount = false;
+
+	if (user != null) {
+		googleAcount = false;
+		if (user.jti != null) {
+			googleAcount = true;
+		}
+	}
+
 	const [noteData, setNoteData] = useState({
 		title: "",
 		content: "",
@@ -22,10 +31,21 @@ function Form(props) {
 		if (note === null) {
 			return true;
 		} else {
-			if (user.result._id === note.creatorId || user.result.admin === true) {
-				return true;
-			} else {
-				return false;
+			if (user != null) {
+				if (googleAcount) {
+					if (user.jti === note.creatorId) {
+						return true;
+					}
+				} else {
+					if (
+						user.result._id === note.creatorId ||
+						user.result.admin === true
+					) {
+						return true;
+					} else {
+						return false;
+					}
+				}
 			}
 		}
 	};
@@ -44,11 +64,6 @@ function Form(props) {
 	const handleSubmit = (e) => {
 		if (user != null) {
 			e.preventDefault();
-			if (user.jti != null) {
-				var googleAcount = true;
-			} else {
-				var googleAcount = false;
-			}
 			if (note === null) {
 				// create note
 				if (googleAcount) {
@@ -68,12 +83,21 @@ function Form(props) {
 				// create edit
 				if (note._id === props.currentId) {
 					if (allowEditNote()) {
-						dispatch(
-							updateNote(props.currentId, {
-								...noteData,
-								name: user?.result?.id,
-							})
-						);
+						if (googleAcount) {
+							dispatch(
+								updateNote(props.currentId, {
+									...noteData,
+									name: user?.jti,
+								})
+							);
+						} else {
+							dispatch(
+								updateNote(props.currentId, {
+									...noteData,
+									name: user?.result?.id,
+								})
+							);
+						}
 						window.location.reload();
 					}
 				}

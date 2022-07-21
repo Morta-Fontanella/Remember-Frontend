@@ -8,7 +8,15 @@ import "./noteStyles.css";
 function Note({ setFormPopup, note, setCurrentId }) {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem(`profile`));
-	var showTrash = false;
+	var canDelete = false;
+	var googleAcount = null;
+
+	if (user != null) {
+		googleAcount = false;
+		if (user.jti != null) {
+			googleAcount = true;
+		}
+	}
 
 	const editButton = () => {
 		setFormPopup(true);
@@ -16,17 +24,27 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	};
 	const deleteButton = () => {
 		if (user != null) {
-			if (user.result._id === note.creatorId || user.result.admin === true) {
-				dispatch(deleteNote(note._id));
+			if (googleAcount) {
+				if (note.creatorId === user.jti) {
+					dispatch(deleteNote(note._id));
+				}
+			} else {
+				if (user.result._id === note.creatorId || user.result.admin === true) {
+					dispatch(deleteNote(note._id));
+				}
 			}
 		}
 	};
 
 	if (user != null) {
-		if (user.result._id === note.creatorId || user.result.admin === true) {
-			showTrash = true;
+		if (googleAcount) {
+			if (note.creatorId === user.jti) {
+				canDelete = true;
+			}
 		} else {
-			showTrash = false;
+			if (user.result._id === note.creatorId || user.result.admin === true) {
+				canDelete = true;
+			}
 		}
 	}
 
@@ -48,7 +66,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 							Created by {note.name} {moment(note.createdAt).fromNow()}
 						</p>
 					}
-					{showTrash && (
+					{canDelete && (
 						<>
 							<div className="buttonContainer">
 								<i className="fa-solid fa-trash" onClick={deleteButton}></i>
