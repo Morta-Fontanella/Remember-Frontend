@@ -7,15 +7,28 @@ import "./noteStyles.css";
 
 function Note({ setFormPopup, note, setCurrentId }) {
 	const dispatch = useDispatch();
+	const user = JSON.parse(localStorage.getItem(`profile`));
+	var showTrash = false;
 
 	const editButton = () => {
 		setFormPopup(true);
 		setCurrentId(note._id);
 	};
-
 	const deleteButton = () => {
-		dispatch(deleteNote(note._id));
+		if (user != null) {
+			if (user.result._id === note.creatorId || user.result.admin === true) {
+				dispatch(deleteNote(note._id));
+			}
+		}
 	};
+
+	if (user != null) {
+		if (user.result._id === note.creatorId || user.result.admin === true) {
+			showTrash = true;
+		} else {
+			showTrash = false;
+		}
+	}
 
 	return (
 		<div className={"note " + (note.color ? note.color : "")}>
@@ -30,12 +43,18 @@ function Note({ setFormPopup, note, setCurrentId }) {
 			</div>
 			<div className="infoContainer">
 				<div className="bottomContainer">
-					<p>
-						Created by {note.name} {moment(note.createdAt).fromNow()}
-					</p>
-					<div className="buttonContainer">
-						<i className="fa-solid fa-trash" onClick={deleteButton}></i>
-					</div>
+					{
+						<p>
+							Created by {note.name} {moment(note.createdAt).fromNow()}
+						</p>
+					}
+					{showTrash && (
+						<>
+							<div className="buttonContainer">
+								<i className="fa-solid fa-trash" onClick={deleteButton}></i>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 		</div>

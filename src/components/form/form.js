@@ -13,8 +13,8 @@ function Form(props) {
 		content: "",
 		color: "",
 		image: "",
+		name: "",
 	});
-
 	const note = useSelector((state) =>
 		props.currentId ? state.notes.find((p) => p._id === props.currentId) : null
 	);
@@ -31,17 +31,47 @@ function Form(props) {
 	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (props.currentId === null) {
-			dispatch(createNote({ ...noteData, name: user?.result?.name }));
+		if (user != null) {
+			e.preventDefault();
+			if (user.jti != null) {
+				var googleAcount = true;
+			} else {
+				var googleAcount = false;
+			}
+			if (note === null) {
+				// create note
+				if (googleAcount) {
+					dispatch(
+						createNote({ ...noteData, creatorId: user?.jti, name: user?.name })
+					);
+				} else {
+					dispatch(
+						createNote({
+							...noteData,
+							creatorId: user?.result?._id,
+							name: user?.result?.name,
+						})
+					);
+				}
+			} else {
+				// create edit
+				if (note._id === props.currentId) {
+					if (user.result._id === note.user || user.result.admin === true) {
+						dispatch(
+							updateNote(props.currentId, {
+								...noteData,
+								name: user?.result?.id,
+							})
+						);
+						window.location.reload();
+					}
+				}
+			}
+			props.setFormPopup(false);
+			clear();
 		} else {
-			dispatch(
-				updateNote(props.currentId, { ...noteData, name: user?.result?.name })
-			);
-			/* window.location.reload(); */
+			console.log("Null user, please register.");
 		}
-		props.setFormPopup(false);
-		clear();
 	};
 
 	const changeColor = (e) => {

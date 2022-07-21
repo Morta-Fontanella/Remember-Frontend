@@ -14,9 +14,8 @@ export const getNotes = () => async (dispatch) => {
 export const createNote = (note) => async (dispatch) => {
 	try {
 		const { data } = await api.createNote(note);
-		console.log("data create note ");
+		console.log(" denddtro try catch");
 		dispatch({ type: CREATE, payload: data });
-		console.log("data create note ");
 	} catch (error) {
 		console.log(error);
 	}
@@ -33,7 +32,7 @@ export const updateNote = (id, note) => async (dispatch) => {
 
 export const deleteNote = (id) => async (dispatch) => {
 	try {
-		await api.deleteNote(id);
+		await await api.deleteNote(id);
 
 		dispatch({ type: DELETE, payload: id });
 	} catch (error) {

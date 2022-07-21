@@ -46,6 +46,7 @@ const Auth = () => {
 
 	function handleCallbackResponse(response) {
 		var userObject = jwt_decode(response.credential);
+		console.log(userObject);
 		localStorage.setItem("profile", JSON.stringify(userObject));
 		navigate("../#", { replace: true });
 	}
