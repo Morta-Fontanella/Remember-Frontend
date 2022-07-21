@@ -22,7 +22,12 @@ const Auth = () => {
 	const dispatch = useDispatch();
 	const [formData, setformData] = useState(inistialState);
 	const navigate = useNavigate();
-	var { isSignup } = location.state || { isSignup: false };
+
+	if (location.state === null) {
+		var { isSignup } = false;
+	} else {
+		var { isSignup } = location.state;
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
