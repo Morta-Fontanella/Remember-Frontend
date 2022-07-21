@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 import "./formInputStyles.css";
 
 function FormInput(props) {
-	const [focused, setFocused] = React.useState(false);
+	const [focused, setFocused] = React.useState("false");
 
 	const handleFocus = () => {
-		setFocused(true);
+		setFocused("true");
 	};
 	return (
 		<div className="formInput">
@@ -15,7 +15,7 @@ function FormInput(props) {
 				<label>{props.title}</label>
 				{props.isSignup && (
 					<NavLink to={props.linkPath}>
-						<p>{props.linkText}</p>
+						<span>{props.linkText}</span>
 					</NavLink>
 				)}
 			</div>
@@ -27,7 +27,7 @@ function FormInput(props) {
 				pattern={!props.isSignup && (props.pattern ? props.pattern : "")}
 				required={!props.isSignup && (props.required ? props.required : false)}
 				onBlur={handleFocus}
-				focused={focused.toString()}
+				focused={focused}
 			/>
 			<span className="errorMessage">{props.errorMessage}</span>
 		</div>
