@@ -81,7 +81,7 @@ const Auth = () => {
 										name="name"
 										onChange={handleChange}
 										errorMessage="Please enter your name"
-										pattern="^[a-zA-Zñáéíóúü ]{2,}+$"
+										pattern="^[a-zA-Zñáéíóúü ]{2,}$"
 										required={true}
 									></FormInput>
 									<FormInput
@@ -89,7 +89,7 @@ const Auth = () => {
 										name="lastName"
 										onChange={handleChange}
 										errorMessage="Please enter your last name"
-										pattern="^[a-zA-Zñáéíóúü ]{2,}+$"
+										pattern="^[a-zA-Zñáéíóúü ]{2,}$"
 										required={true}
 									></FormInput>
 								</>
