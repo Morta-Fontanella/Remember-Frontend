@@ -18,6 +18,17 @@ function Form(props) {
 	const note = useSelector((state) =>
 		props.currentId ? state.notes.find((p) => p._id === props.currentId) : null
 	);
+	const allowEditNote = () => {
+		if (note === null) {
+			return true;
+		} else {
+			if (user.result._id === note.creatorId || user.result.admin === true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	};
 
 	useEffect(() => {
 		if (note) {
@@ -56,7 +67,7 @@ function Form(props) {
 			} else {
 				// create edit
 				if (note._id === props.currentId) {
-					if (user.result._id === note.user || user.result.admin === true) {
+					if (allowEditNote()) {
 						dispatch(
 							updateNote(props.currentId, {
 								...noteData,
@@ -101,17 +112,22 @@ function Form(props) {
 							onChange={(e) =>
 								setNoteData({ ...noteData, title: e.target.value })
 							}
+							readOnly={!allowEditNote()}
 						></input>
-						<label className="fa-solid fa-image addImg">
-							<FileBase
-								className="fa-solid fa-image"
-								type="file"
-								multiple={false}
-								onDone={({ base64 }) => {
-									setNoteData({ ...noteData, image: base64 });
-								}}
-							/>
-						</label>
+						{allowEditNote() ? (
+							<label className="fa-solid fa-image addImg">
+								<FileBase
+									className="fa-solid fa-image"
+									type="file"
+									multiple={false}
+									onDone={({ base64 }) => {
+										setNoteData({ ...noteData, image: base64 });
+									}}
+								/>
+							</label>
+						) : (
+							""
+						)}
 					</div>
 					<textarea
 						className="content"
@@ -121,38 +137,46 @@ function Form(props) {
 						onChange={(e) =>
 							setNoteData({ ...noteData, content: e.target.value })
 						}
+						readOnly={!allowEditNote()}
 					></textarea>
 				</div>
-				<div className="formbuttonContainer">
-					<div className="colorPicker">
-						<div
-							className="color white"
-							onClick={() => changeColor(null)}
-						></div>
-						<div className="color red" onClick={() => changeColor("red")}></div>
-						<div
-							className="color pink"
-							onClick={() => changeColor("pink")}
-						></div>
-						<div
-							className="color yellow"
-							onClick={() => changeColor("yellow")}
-						></div>
-						<div
-							className="color green"
-							onClick={() => changeColor("green")}
-						></div>
-						<div
-							className="color blue"
-							onClick={() => changeColor("blue")}
-						></div>
-						<div
-							className="color purple"
-							onClick={() => changeColor("purple")}
-						></div>
+				{allowEditNote() ? (
+					<div className="formbuttonContainer">
+						<div className="colorPicker">
+							<div
+								className="color white"
+								onClick={() => changeColor(null)}
+							></div>
+							<div
+								className="color red"
+								onClick={() => changeColor("red")}
+							></div>
+							<div
+								className="color pink"
+								onClick={() => changeColor("pink")}
+							></div>
+							<div
+								className="color yellow"
+								onClick={() => changeColor("yellow")}
+							></div>
+							<div
+								className="color green"
+								onClick={() => changeColor("green")}
+							></div>
+							<div
+								className="color blue"
+								onClick={() => changeColor("blue")}
+							></div>
+							<div
+								className="color purple"
+								onClick={() => changeColor("purple")}
+							></div>
+						</div>
+						<i className="fa-solid fa-check" onClick={handleSubmit}></i>
 					</div>
-					<i className="fa-solid fa-check" onClick={handleSubmit}></i>
-				</div>
+				) : (
+					""
+				)}
 			</form>
 			<i
 				className="fa-solid fa-circle-xmark closeForm"
