@@ -51,22 +51,19 @@ const Auth = () => {
 		const token = sign(
 			{
 				email: userObject.email,
-				id: userObject.jti,
-				iat: 1658443530,
-				exp: 1658445330,
+				id: userObject.aud,
+				expiresIn: "30min",
 			},
 			secret
 		);
-
 		var user = {
-			jti: userObject.jti,
+			id: userObject.aud,
 			name: userObject.name,
 			email: userObject.email,
 			picture: userObject.picture,
 			token: token,
 		};
 		console.log(userObject);
-		console.log(user);
 		localStorage.setItem("profile", JSON.stringify(user));
 		navigate("../#", { replace: true });
 	}

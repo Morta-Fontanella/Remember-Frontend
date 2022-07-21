@@ -13,7 +13,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 
 	if (user != null) {
 		googleAcount = false;
-		if (user.jti != null) {
+		if (user.id != null) {
 			googleAcount = true;
 		}
 	}
@@ -25,7 +25,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	const deleteButton = () => {
 		if (user != null) {
 			if (googleAcount) {
-				if (note.creatorId === user.jti) {
+				if (note.creatorId === user.id) {
 					dispatch(deleteNote(note._id));
 				}
 			} else {
@@ -38,7 +38,7 @@ function Note({ setFormPopup, note, setCurrentId }) {
 
 	if (user != null) {
 		if (googleAcount) {
-			if (note.creatorId === user.jti) {
+			if (note.creatorId === user.id) {
 				canDelete = true;
 			}
 		} else {

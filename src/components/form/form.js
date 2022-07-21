@@ -12,7 +12,7 @@ function Form(props) {
 
 	if (user != null) {
 		googleAcount = false;
-		if (user.jti != null) {
+		if (user.id != null) {
 			googleAcount = true;
 		}
 	}
@@ -33,7 +33,7 @@ function Form(props) {
 		} else {
 			if (user != null) {
 				if (googleAcount) {
-					if (user.jti === note.creatorId) {
+					if (user.id === note.creatorId) {
 						return true;
 					}
 				} else {
@@ -68,7 +68,7 @@ function Form(props) {
 				// create note
 				if (googleAcount) {
 					dispatch(
-						createNote({ ...noteData, creatorId: user?.jti, name: user?.name })
+						createNote({ ...noteData, creatorId: user?.id, name: user?.name })
 					);
 				} else {
 					dispatch(
@@ -87,7 +87,7 @@ function Form(props) {
 							dispatch(
 								updateNote(props.currentId, {
 									...noteData,
-									name: user?.jti,
+									name: user?.id,
 								})
 							);
 						} else {
