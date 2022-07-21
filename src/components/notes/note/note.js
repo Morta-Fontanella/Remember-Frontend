@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import { deleteNote } from "../../../actions/notes";
 import { useDispatch } from "react-redux";
@@ -6,11 +6,7 @@ import { useDispatch } from "react-redux";
 import "./noteStyles.css";
 
 function Note({ setFormPopup, note, setCurrentId }) {
-	const [openColors, setOpenColors] = useState(false);
 	const dispatch = useDispatch();
-	const toggleColors = () => {
-		setOpenColors(!openColors);
-	};
 
 	const editButton = () => {
 		setFormPopup(true);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./formInputStyles.css";
@@ -15,7 +15,7 @@ function FormInput(props) {
 				<label>{props.title}</label>
 				{props.isSignup && (
 					<NavLink to={props.linkPath}>
-						<a>{props.linkText}</a>
+						<p>{props.linkText}</p>
 					</NavLink>
 				)}
 			</div>

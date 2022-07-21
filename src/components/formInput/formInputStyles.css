@@ -47,7 +47,7 @@
 	align-items: center;
 }
 
-.titleContainer a {
+.titleContainer p {
 	color: var(--primary-color);
 	text-decoration: none;
 	font-size: 0.7rem;

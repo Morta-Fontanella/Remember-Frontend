@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import Wave from "react-wavify";
@@ -20,15 +20,9 @@ const inistialState = {
 const Auth = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
-	const [user, setUser] = useState({});
 	const [formData, setformData] = useState(inistialState);
 	const navigate = useNavigate();
-
-	if (location.state === null) {
-		var { isSignup } = false;
-	} else {
-		var { isSignup } = location.state;
-	}
+	var { isSignup } = location.state || { isSignup: false };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -45,7 +39,6 @@ const Auth = () => {
 
 	function handleCallbackResponse(response) {
 		var userObject = jwt_decode(response.credential);
-		setUser(userObject);
 		localStorage.setItem("profile", JSON.stringify(userObject));
 
 		navigate("../#", { replace: true });
@@ -63,7 +56,7 @@ const Auth = () => {
 			document.getElementById("googleSignIn"),
 			{}
 		);
-	}, []);
+	});
 
 	return (
 		<main id="auth">
