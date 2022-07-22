@@ -46,11 +46,10 @@ const Auth = () => {
 			return;
 		} else {
 			if (isSignup) {
-				dispatch(signup(formData));
+				dispatch(signup(formData, navigate));
 			} else {
-				dispatch(signin(formData));
+				dispatch(signin(formData, navigate));
 			}
-			navigate("../#", { replace: true });
 		}
 	};
 
@@ -78,7 +77,7 @@ const Auth = () => {
 			token: token,
 		};
 		localStorage.setItem("profile", JSON.stringify(user));
-		navigate("../#", { replace: true });
+		navigate("/");
 	}
 
 	useEffect(() => {
@@ -175,7 +174,6 @@ const Auth = () => {
 				formError = true;
 			}
 		} else {
-			//Validations for signin
 		}
 	};
 

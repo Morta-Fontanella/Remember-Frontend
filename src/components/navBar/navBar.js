@@ -15,6 +15,7 @@ const NavBar = () => {
 	function handleSignOut() {
 		dispatch({ type: actionType.LOGOUT });
 		setUser(null);
+		window.location.reload();
 	}
 
 	useEffect(() => {
