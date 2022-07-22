@@ -25,11 +25,15 @@
 .textContainer h4 {
 	font-size: 1.3rem;
 	font-weight: 400;
+	margin-bottom: 0.5rem;
 }
 
 .textContainer p {
 	font-size: 1rem;
 	font-weight: 400;
+	max-height: 22rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .infoContainer {

@@ -13,6 +13,20 @@
 	z-index: 2;
 }
 
+.formContainer ::-webkit-scrollbar {
+	width: 0.3rem;
+}
+
+.formContainer ::-webkit-scrollbar-track {
+	background-color: var(--transparent-color);
+	border-radius: 100rem;
+}
+
+.formContainer ::-webkit-scrollbar-thumb {
+	background-color: var(--transparent-color);
+	border-radius: 0.5rem;
+}
+
 form {
 	display: flex;
 	flex-direction: column;
@@ -20,6 +34,9 @@ form {
 	border-radius: 5px;
 	color: var(--text-color);
 	max-height: 85%;
+	min-height: calc(25% + 10rem);
+	max-width: 85%;
+	min-width: calc(25% + 5rem);
 }
 
 form img {
@@ -30,7 +47,7 @@ form img {
 	border-top-left-radius: 5px;
 }
 
-.textContainer {
+.formContainer .textContainer {
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
@@ -84,7 +101,7 @@ form img {
 	font-size: 0.9rem;
 	resize: none;
 	min-height: 100px;
-	overflow: hidden;
+	flex-grow: 1;
 }
 
 .formbuttonContainer {
