@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
 import logo from "../../images/logo.png";
 import Button from "../button/button";
 
@@ -12,30 +11,13 @@ const NavBar = () => {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 	const dispatch = useDispatch();
 	const location = useLocation();
-	const navigate = useNavigate();
 
-	function handleSignOut(event) {
+	function handleSignOut() {
 		dispatch({ type: actionType.LOGOUT });
 		setUser(null);
 	}
 
-	const signOut = () => {
-		dispatch({ type: actionType.LOGOUT });
-
-		navigate("../auth", { replace: true });
-
-		setUser(null);
-	};
-
 	useEffect(() => {
-		const token = user?.token;
-
-		/* 		if (token) {
-			const decodedToken = decode(token);
-
-			if (decodedToken.exp * 1000 < new Date().getTime()) signOut();
-		} */
-
 		setUser(JSON.parse(localStorage.getItem("profile")));
 	}, [location]);
 

@@ -22,6 +22,16 @@
 	cursor: pointer;
 }
 
+.textContainer h4 {
+	font-size: 1.3rem;
+	font-weight: 400;
+}
+
+.textContainer p {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
 .infoContainer {
 	display: flex;
 	flex-direction: column;
@@ -36,7 +46,8 @@
 }
 
 .bottomContainer p {
-	font-size: 0.9rem;
+	font-size: 0.8rem;
+	font-weight: 300;
 }
 
 .buttonContainer {
