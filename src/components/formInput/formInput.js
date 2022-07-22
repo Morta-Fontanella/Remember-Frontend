@@ -4,11 +4,14 @@ import { NavLink } from "react-router-dom";
 import "./formInputStyles.css";
 
 function FormInput(props) {
-	const [focused, setFocused] = React.useState("false");
-
-	const handleFocus = () => {
-		setFocused("true");
+	const error = () => {
+		if (props.errorMessage === "" || props.errorMessage === undefined) {
+			return false;
+		} else {
+			return true;
+		}
 	};
+
 	return (
 		<div className="formInput">
 			<div className="titleContainer">
@@ -24,12 +27,12 @@ function FormInput(props) {
 				name={props.name}
 				onChange={props.onChange}
 				value={props.value}
-				pattern={!props.isSignup && (props.pattern ? props.pattern : "")}
-				required={!props.isSignup && (props.required ? props.required : false)}
-				onBlur={handleFocus}
-				focused={focused}
+				className={error() ? "error" : ""}
 			/>
-			<span className="errorMessage">{props.errorMessage}</span>
+			{
+				// Show error message
+				error() && <span className="errorMessage">{props.errorMessage}</span>
+			}
 		</div>
 	);
 }

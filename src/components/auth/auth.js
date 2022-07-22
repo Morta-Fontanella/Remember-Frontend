@@ -21,7 +21,16 @@ const Auth = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const [formData, setformData] = useState(inistialState);
+	const [nameError, setNameError] = useState("");
+	const [lastNameError, setLastNameError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
 	const navigate = useNavigate();
+
+	//Validations
+	var formError = false;
 
 	if (location.state === null) {
 		var { isSignup } = false;
@@ -31,13 +40,18 @@ const Auth = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (isSignup) {
-			dispatch(signup(formData));
+		formError = false;
+		Validations();
+		if (formError) {
+			return;
 		} else {
-			dispatch(signin(formData));
+			if (isSignup) {
+				dispatch(signup(formData));
+			} else {
+				dispatch(signin(formData));
+			}
+			navigate("../#", { replace: true });
 		}
-
-		navigate("../#", { replace: true });
 	};
 
 	const handleChange = (e) => {
@@ -81,6 +95,90 @@ const Auth = () => {
 		);
 	});
 
+	const Validations = () => {
+		if (isSignup) {
+			//Validations for signup
+			if (formData.name === "") {
+				setNameError("Name is required");
+				formError = true;
+			} else {
+				if (formData.name.length < 3) {
+					setNameError("Name must be at least 3 characters");
+					formError = true;
+				} else {
+					if (formData.name.match(/^[a-zA-Z]+$/)) {
+						setNameError("");
+					} else {
+						setNameError("Name must be letters only");
+						formError = true;
+					}
+				}
+			}
+			if (formData.lastName === "") {
+				setLastNameError("Last name is required");
+				formError = true;
+			} else {
+				if (formData.lastName.length < 3) {
+					setLastNameError("Last name must be at least 3 characters");
+					formError = true;
+				} else {
+					if (formData.lastName.match(/^[a-zA-Z]+$/)) {
+						setLastNameError = "";
+					} else {
+						setLastNameError("Last name must be letters only");
+						formError = true;
+					}
+				}
+			}
+			if (formData.email === "") {
+				setEmailError("Email is required");
+				formError = true;
+			} else {
+				if (
+					formData.email.match(
+						/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+					)
+				) {
+					setEmailError = "";
+				} else {
+					setEmailError("Invalid email");
+					formError = true;
+				}
+			}
+			if (formData.password === "") {
+				setPasswordError("Password is required");
+				formError = true;
+			} else {
+				if (formData.password.length < 6) {
+					setPasswordError("Password must be at least 6 characters");
+					formError = true;
+				} else {
+					if (
+						formData.password.match(
+							/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]$/
+						)
+					) {
+						setPasswordError("");
+					} else {
+						setPasswordError(
+							"Password must be at least one uppercase letter, one lowercase letter and one number"
+						);
+						formError = true;
+					}
+				}
+			}
+			if (
+				formData.password !== formData.confirmPassword ||
+				formData.confirmPassword === ""
+			) {
+				setConfirmPasswordError("Passwords do not match");
+				formError = true;
+			}
+		} else {
+			//Validations for signin
+		}
+	};
+
 	return (
 		<main id="auth">
 			<div className="mainContainer">
@@ -96,17 +194,13 @@ const Auth = () => {
 										title="Name"
 										name="name"
 										onChange={handleChange}
-										errorMessage="Please enter your name"
-										pattern="^[a-zA-Zñáéíóúü ]{2,}$"
-										required={true}
+										errorMessage={nameError}
 									></FormInput>
 									<FormInput
 										title="Last Name"
 										name="lastName"
 										onChange={handleChange}
-										errorMessage="Please enter your last name"
-										pattern="^[a-zA-Zñáéíóúü ]{2,}$"
-										required={true}
+										errorMessage={lastNameError}
 									></FormInput>
 								</>
 							)
@@ -115,18 +209,14 @@ const Auth = () => {
 							title="Email"
 							name="email"
 							onChange={handleChange}
-							errorMessage="Please enter a valid email"
-							pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-							required={isSignup}
+							errorMessage={emailError}
 						></FormInput>
 						<FormInput
 							title="Password"
 							name="password"
 							type="password"
 							onChange={handleChange}
-							errorMessage="Please enter a valid password"
-							pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"
-							required={isSignup}
+							errorMessage={passwordError}
 							isSignup={!isSignup}
 							linkPath="/changePass"
 							linkText="Forgot Password?"
@@ -139,7 +229,7 @@ const Auth = () => {
 									name="ConfirmPassword"
 									type="password"
 									onChange={handleChange}
-									errorMessage="Doesn't match with password"
+									errorMessage={confirmPasswordError}
 									pattern={formData.password}
 									required={true}
 								></FormInput>
