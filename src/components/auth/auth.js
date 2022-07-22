@@ -46,9 +46,44 @@ const Auth = () => {
 			return;
 		} else {
 			if (isSignup) {
-				dispatch(signup(formData, navigate));
+				dispatch(signup(formData)).then((res) => {
+					if (res.request.status === 201) {
+						//signup success
+						navigate("/");
+					} else {
+						var response = JSON.parse(res.request.response);
+						if (res.request.status === 500) {
+							//Something went wrong please contact an administrator
+							formError = true;
+							alert(response.message);
+						} else {
+							setEmailError(response.message);
+							formError = true;
+						}
+					}
+				});
 			} else {
-				dispatch(signin(formData, navigate));
+				dispatch(signin(formData)).then((res) => {
+					if (res === undefined) {
+						//signin success
+						navigate("/");
+					} else {
+						var response = JSON.parse(res.request.response);
+						if (res.request.status === 500) {
+							//Something went wrong please contact an administrator
+							formError = true;
+							alert(response.message);
+						} else {
+							if (res.request.status === 404) {
+								setEmailError(response.message);
+								formError = true;
+							} else {
+								setPasswordError(response.message);
+								formError = true;
+							}
+						}
+					}
+				});
 			}
 		}
 	};
@@ -122,7 +157,7 @@ const Auth = () => {
 					formError = true;
 				} else {
 					if (formData.lastName.match(/^[a-zA-Z]+$/)) {
-						setLastNameError = "";
+						setLastNameError("");
 					} else {
 						setLastNameError("Last name must be letters only");
 						formError = true;
@@ -138,7 +173,7 @@ const Auth = () => {
 						/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
 					)
 				) {
-					setEmailError = "";
+					setEmailError("");
 				} else {
 					setEmailError("Invalid email");
 					formError = true;
@@ -154,7 +189,7 @@ const Auth = () => {
 				} else {
 					if (
 						formData.password.match(
-							/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]$/
+							/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
 						)
 					) {
 						setPasswordError("");
@@ -172,6 +207,8 @@ const Auth = () => {
 			) {
 				setConfirmPasswordError("Passwords do not match");
 				formError = true;
+			} else {
+				setConfirmPasswordError("");
 			}
 		} else {
 		}
@@ -224,7 +261,7 @@ const Auth = () => {
 							isSignup && (
 								<FormInput
 									title="Confirm password"
-									name="ConfirmPassword"
+									name="confirmPassword"
 									type="password"
 									onChange={handleChange}
 									errorMessage={confirmPasswordError}
