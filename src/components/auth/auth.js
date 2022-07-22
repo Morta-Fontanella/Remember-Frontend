@@ -57,13 +57,12 @@ const Auth = () => {
 			secret
 		);
 		var user = {
-			id: userObject.aud,
+			id: userObject.email,
 			name: userObject.name,
 			email: userObject.email,
 			picture: userObject.picture,
 			token: token,
 		};
-		console.log(userObject);
 		localStorage.setItem("profile", JSON.stringify(user));
 		navigate("../#", { replace: true });
 	}
