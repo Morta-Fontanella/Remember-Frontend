@@ -156,7 +156,20 @@ header a {
 		display: none;
 	}
 
+	.userMenuContainer {
+		min-width: auto;
+	}
+
+	.userContainer .avatar {
+		margin-right: 0px;
+	}
+
 	.userContainer .userName {
 		display: none;
+	}
+
+	#dropdownMenu {
+		width: 8rem;
+		left: -5rem;
 	}
 }
