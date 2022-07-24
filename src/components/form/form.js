@@ -24,6 +24,7 @@ function Form(props) {
 		image: "",
 		name: "",
 	});
+	const [backColor, setBackColor] = useState("");
 	const note = useSelector((state) =>
 		props.currentId ? state.notes.find((p) => p._id === props.currentId) : null
 	);
@@ -53,6 +54,7 @@ function Form(props) {
 	useEffect(() => {
 		if (note) {
 			setNoteData(note);
+			setBackColor(note.color);
 		}
 	}, [note]);
 
@@ -110,6 +112,7 @@ function Form(props) {
 	};
 
 	const changeColor = (e) => {
+		setBackColor(e);
 		noteData.color = e;
 	};
 
@@ -123,7 +126,7 @@ function Form(props) {
 			<form
 				autoComplete="off"
 				noValidate
-				className={note && note.color ? note.color : ""}
+				className={note && backColor ? backColor : ""}
 			>
 				{note && note.image ? <img src={note.image} alt="note" /> : <div></div>}
 				<div className="textContainer">
