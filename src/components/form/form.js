@@ -25,6 +25,7 @@ function Form(props) {
 		name: "",
 	});
 	const [backColor, setBackColor] = useState("");
+	const [image, setImage] = useState("");
 	const note = useSelector((state) =>
 		props.currentId ? state.notes.find((p) => p._id === props.currentId) : null
 	);
@@ -55,6 +56,7 @@ function Form(props) {
 		if (note) {
 			setNoteData(note);
 			setBackColor(note.color);
+			setImage(note.image);
 		}
 	}, [note]);
 
@@ -116,6 +118,11 @@ function Form(props) {
 		noteData.color = e;
 	};
 
+	const changeImage = (e) => {
+		setImage(e);
+		noteData.image = e;
+	};
+
 	const closeButton = () => {
 		clear();
 		props.setFormPopup(false);
@@ -148,7 +155,7 @@ function Form(props) {
 									type="file"
 									multiple={false}
 									onDone={({ base64 }) => {
-										setNoteData({ ...noteData, image: base64 });
+										changeImage(base64);
 									}}
 								/>
 							</label>
