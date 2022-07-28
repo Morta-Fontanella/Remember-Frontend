@@ -47,7 +47,7 @@ const Auth = () => {
 		} else {
 			if (isSignup) {
 				dispatch(signup(formData)).then((res) => {
-					if (res.request.status === 201) {
+					if (res === undefined) {
 						//signup success
 						navigate("/");
 					} else {
