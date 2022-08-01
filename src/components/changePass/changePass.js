@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/button";
 import Wave from "react-wavify";
+import FormInput from "../formInput/formInput";
 
 import "../auth/authStyles.css";
 
@@ -10,9 +11,13 @@ const ChangePass = () => {
 			<div className="mainContainer">
 				<div className="authContainer">
 					<h3>Forgot password?</h3>
-					<form>
-						<label>email</label>
-						<input type="email" name="email" />
+					<form className="formInput">
+						<FormInput
+							title="Email"
+							name="email"
+							//onChange={handleChange}
+							//errorMessage={emailError}
+						></FormInput>
 						<Button type="submit" design="filled">
 							Send a new password
 						</Button>
