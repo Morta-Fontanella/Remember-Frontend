@@ -43,8 +43,22 @@
 	align-items: center;
 }
 
-.titleContainer :is(a, span) {
+.titleContainer :is(a, span),
+.fa-circle-info {
 	color: var(--primary-color);
 	text-decoration: none;
 	font-size: 0.7rem;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+}
+
+.fa-circle-info {
+	padding: 0 0 0 0.3rem;
+}
+
+.forgotLink {
+	white-space: nowrap;
 }

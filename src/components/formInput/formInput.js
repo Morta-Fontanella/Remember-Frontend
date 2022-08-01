@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Tooltip } from "@material-ui/core";
 
 import "./formInputStyles.css";
 
@@ -15,15 +16,30 @@ function FormInput(props) {
 	return (
 		<div className="formInput">
 			<div className="titleContainer">
-				<label>{props.title}</label>
+				<div className="title">
+					<label>{props.title}</label>
+					{props.name === "password" && (
+						<Tooltip
+							title="Password must be at least one uppercase letter, one lowercase
+						letter and one number"
+							placement="right"
+							color="red"
+						>
+							<i className="fa-solid fa-circle-info"></i>
+						</Tooltip>
+					)}
+				</div>
 				{props.isSignup && (
-					<NavLink to={props.linkPath}>
-						<span>{props.linkText}</span>
-					</NavLink>
+					<div>
+						<NavLink to={props.linkPath}>
+							<span className="forgotLink">{props.linkText}</span>
+						</NavLink>
+					</div>
 				)}
 			</div>
+
 			<input
-				type={props.type ? props.type : "text"}
+				type={props.type ? props.name : "text"}
 				name={props.name}
 				onChange={props.onChange}
 				value={props.value}
