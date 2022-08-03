@@ -125,6 +125,8 @@ function Form(props) {
 
 	const closeButton = () => {
 		clear();
+		setImage("");
+		setBackColor("");
 		props.setFormPopup(false);
 	};
 
@@ -133,9 +135,9 @@ function Form(props) {
 			<form
 				autoComplete="off"
 				noValidate
-				className={note && backColor ? backColor : ""}
+				className={backColor ? backColor : ""}
 			>
-				{note && note.image ? <img src={note.image} alt="note" /> : <div></div>}
+				{image ? <img src={image} alt="note" /> : <div></div>}
 				<div className="textContainer">
 					<div className="titleContainer">
 						<input
