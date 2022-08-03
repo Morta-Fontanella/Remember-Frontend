@@ -8,6 +8,7 @@ import Button from "../button/button";
 import { signin, signup } from "../../actions/auth";
 
 import "./authStyles.css";
+import * as actionType from "../../constants/actionTypes";
 
 const inistialState = {
 	name: "",
@@ -18,6 +19,7 @@ const inistialState = {
 };
 
 const Auth = () => {
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const [formData, setformData] = useState(inistialState);
@@ -36,6 +38,11 @@ const Auth = () => {
 		var { isSignup } = false;
 	} else {
 		var { isSignup } = location.state;
+	}
+
+	if (user) {
+		dispatch({ type: actionType.LOGOUT });
+		setUser(null);
 	}
 
 	const handleSubmit = (e) => {
@@ -220,7 +227,7 @@ const Auth = () => {
 				<div className="authContainer">
 					<h3>{isSignup ? "Sign Up" : "Sign In"}</h3>
 
-					<form>
+					<form autoComplete="off">
 						{
 							// Sign up " Show Name and Last Name"
 							isSignup && (
@@ -245,11 +252,13 @@ const Auth = () => {
 							name="email"
 							onChange={handleChange}
 							errorMessage={emailError}
+							autoComplete="off"
 						></FormInput>
 						<FormInput
 							title="Password"
 							name="password"
 							type="password"
+							autoComplete="new-password"
 							onChange={handleChange}
 							errorMessage={passwordError}
 							isSignup={!isSignup}
