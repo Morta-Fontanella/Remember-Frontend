@@ -37,14 +37,16 @@ function FormInput(props) {
 					</div>
 				)}
 			</div>
-
 			<input
-				type={props.type ? props.name : "text"}
+				type={props.type ? "password" : "text"}
 				name={props.name}
 				onChange={props.onChange}
 				value={props.value}
 				className={error() ? "error" : ""}
 			/>
+			{/* 			{(props.name === "password" || props.name === "confirmPassword") && (
+				<i class="fa-solid fa-eye" onClick={showPass}></i>
+			)} */}
 			{
 				// Show error message
 				error() && <span className="errorMessage">{props.errorMessage}</span>
