@@ -20,3 +20,4 @@ export const deleteNote = (id) => API.delete(`/notes/${id}`);
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);
+export const google = (user) => API.post("/user/google", user);

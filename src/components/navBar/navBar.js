@@ -47,29 +47,13 @@ const NavBar = () => {
 		userMenu.classList.toggle("show");
 	};
 
-	function userName() {
-		if (user.name) {
-			return user.name;
-		} else {
-			return user.result.name;
-		}
-	}
-
 	function userAvatar() {
-		if (user.name) {
-			return <img className="avatar" src={user.picture} alt={user.name}></img>;
+		if (!user.result.avatar) {
+			return <i class="fas fa-user-circle"></i>;
 		} else {
-			if (!user.result.avatar) {
-				return <i class="fas fa-user-circle"></i>;
-			} else {
-				return (
-					<img
-						className="avatar"
-						src={user.result.avatar}
-						alt={user.name}
-					></img>
-				);
-			}
+			return (
+				<img className="avatar" src={user.result.avatar} alt={user.name}></img>
+			);
 		}
 	}
 
@@ -88,7 +72,7 @@ const NavBar = () => {
 						<div className="userMenuContainer">
 							<div className="userContainer" onClick={toggleDropdownMenu}>
 								<div>{userAvatar()}</div>
-								<h3 className="userName">{userName()}</h3>
+								<h3 className="userName">{user.result.name}</h3>
 							</div>
 							<div id="dropdownMenu">
 								<div className="Item" onClick={handleSignOut}>
