@@ -104,7 +104,6 @@ const Auth = () => {
 				//signup success
 				navigate("/");
 			} else {
-				console.log("EEROR FRONT");
 				console.log(res);
 			}
 		});
@@ -114,8 +113,7 @@ const Auth = () => {
 		const google = window.google;
 		// google auth
 		google.accounts.id.initialize({
-			client_id:
-				"345095198176-e7h80fb0p4ltuib1foohfim062h2p78r.apps.googleusercontent.com",
+			client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
 			callback: handleCallbackResponse,
 		});
 		google.accounts.id.renderButton(
