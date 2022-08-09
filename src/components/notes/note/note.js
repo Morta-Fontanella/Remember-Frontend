@@ -9,14 +9,6 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem(`profile`));
 	var canDelete = false;
-	var googleAcount = null;
-
-	if (user != null) {
-		googleAcount = false;
-		if (user.id != null) {
-			googleAcount = true;
-		}
-	}
 
 	const editButton = () => {
 		setFormPopup(true);
@@ -24,27 +16,15 @@ function Note({ setFormPopup, note, setCurrentId }) {
 	};
 	const deleteButton = () => {
 		if (user != null) {
-			if (googleAcount) {
-				if (note.creatorId === user.id) {
-					dispatch(deleteNote(note._id));
-				}
-			} else {
-				if (user.result._id === note.creatorId || user.result.admin === true) {
-					dispatch(deleteNote(note._id));
-				}
+			if (user.result._id === note.creatorId || user.result.admin === true) {
+				dispatch(deleteNote(note._id));
 			}
 		}
 	};
 
 	if (user != null) {
-		if (googleAcount) {
-			if (note.creatorId === user.id) {
-				canDelete = true;
-			}
-		} else {
-			if (user.result._id === note.creatorId || user.result.admin === true) {
-				canDelete = true;
-			}
+		if (user.result._id === note.creatorId || user.result.admin === true) {
+			canDelete = true;
 		}
 	}
 

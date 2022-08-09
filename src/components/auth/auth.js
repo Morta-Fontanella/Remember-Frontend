@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import Wave from "react-wavify";
 import FormInput from "../formInput/formInput";
 import Button from "../button/button";
-import { signin, signup } from "../../actions/auth";
+import { signin, signup, google } from "../../actions/auth";
 
 import "./authStyles.css";
 import * as actionType from "../../constants/actionTypes";
@@ -100,26 +99,15 @@ const Auth = () => {
 	};
 
 	function handleCallbackResponse(response) {
-		var userObject = jwt_decode(response.credential);
-		const sign = require("jwt-encode");
-		const secret = "test";
-		const token = sign(
-			{
-				email: userObject.email,
-				id: userObject.aud,
-				expiresIn: "30min",
-			},
-			secret
-		);
-		var user = {
-			id: userObject.email,
-			name: userObject.name,
-			email: userObject.email,
-			picture: userObject.picture,
-			token: token,
-		};
-		localStorage.setItem("profile", JSON.stringify(user));
-		navigate("/");
+		dispatch(google(response)).then((res) => {
+			if (res === undefined) {
+				//signup success
+				navigate("/");
+			} else {
+				console.log("EEROR FRONT");
+				console.log(res);
+			}
+		});
 	}
 
 	useEffect(() => {

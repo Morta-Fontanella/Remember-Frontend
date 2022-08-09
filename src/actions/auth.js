@@ -20,3 +20,13 @@ export const signup = (formData) => async (dispatch) => {
 		return response;
 	}
 };
+
+export const google = (formData) => async (dispatch) => {
+	try {
+		const { data } = await api.google(formData);
+
+		dispatch({ type: AUTH, data });
+	} catch (response) {
+		return response;
+	}
+};
