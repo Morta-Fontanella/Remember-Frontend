@@ -16,18 +16,20 @@ main#auth {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	width: max(20rem, 0%);
 	padding: 2rem;
 }
 
 .authContainer form {
-	max-width: 89%;
+	max-width: 100%;
 }
 
 .authContainer h3 {
 	display: block;
 	font-weight: 400;
 	margin: 0.5rem 0;
+	align-self: flex-start;
 }
 
 .divider {
