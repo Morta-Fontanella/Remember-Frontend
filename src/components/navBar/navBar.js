@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
+
 import logo from "../../images/logo.png";
 import Button from "../button/button";
 
@@ -19,6 +21,14 @@ const NavBar = () => {
 	}
 
 	useEffect(() => {
+		const token = user?.token;
+
+		if (token) {
+			const decodedToken = decode(token);
+
+			if (decodedToken.exp * 1000 < new Date().getTime()) handleSignOut();
+		}
+
 		setUser(JSON.parse(localStorage.getItem("profile")));
 	}, [location]);
 

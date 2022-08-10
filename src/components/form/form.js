@@ -9,7 +9,7 @@ function Form(props) {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem(`profile`));
 
-	const [noteData, setNoteData] = useState({
+	const [noteData, setNoteData, setReloadNotes] = useState({
 		title: "",
 		content: "",
 		color: "",
@@ -46,12 +46,14 @@ function Form(props) {
 	const clear = () => {
 		props.setCurrentId(null);
 		setNoteData({ title: "", content: "", color: "", image: "" });
+		setImage("");
+		setBackColor("");
 	};
 
 	const handleSubmit = (e) => {
 		if (user != null) {
 			e.preventDefault();
-			if (note === null) {
+			if (props.currentId === null) {
 				// create note
 				dispatch(
 					createNote({
@@ -61,17 +63,16 @@ function Form(props) {
 					})
 				);
 			} else {
-				// create edit
-				if (note._id === props.currentId) {
-					if (allowEditNote()) {
-						dispatch(
-							updateNote(props.currentId, {
-								...noteData,
-								name: user?.result?.id,
-							})
-						);
-						window.location.reload();
-					}
+				// edit note
+				if (allowEditNote()) {
+					dispatch(
+						updateNote(props.currentId, {
+							...noteData,
+							name: user?.result?.id,
+						})
+					);
+					// reload notes
+					props.setReloadNotes(true);
 				}
 			}
 			props.setFormPopup(false);
@@ -93,8 +94,6 @@ function Form(props) {
 
 	const closeButton = () => {
 		clear();
-		setImage("");
-		setBackColor("");
 		props.setFormPopup(false);
 	};
 
