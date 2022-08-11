@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import decode from "jwt-decode";
 
 import logo from "../../images/logo.png";
@@ -10,13 +10,12 @@ import "./navBarStyles.css";
 import * as actionType from "../../constants/actionTypes";
 
 const NavBar = () => {
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+	const user = useSelector((state) => state.auth.user);
 	const dispatch = useDispatch();
 	const location = useLocation();
 
 	function handleSignOut() {
 		dispatch({ type: actionType.LOGOUT });
-		setUser(null);
 		window.location.reload();
 	}
 
@@ -28,8 +27,6 @@ const NavBar = () => {
 
 			if (decodedToken.exp * 1000 < new Date().getTime()) handleSignOut();
 		}
-
-		setUser(JSON.parse(localStorage.getItem("profile")));
 	}, [location]);
 
 	var storedTheme =
@@ -62,7 +59,11 @@ const NavBar = () => {
 			return <i class="fas fa-user-circle"></i>;
 		} else {
 			return (
-				<img className="avatar" src={user.result.avatar} alt={user.name}></img>
+				<img
+					className="avatar"
+					src={user.result.avatar}
+					alt={user.result.name}
+				></img>
 			);
 		}
 	}

@@ -8,7 +8,7 @@ import "./notesStyles.css";
 
 const Notes = ({ setFormPopup, setCurrentId }) => {
 	var notekey = 0;
-	const user = JSON.parse(localStorage.getItem(`profile`));
+	const user = useSelector((state) => state.auth.user);
 	const notes = useSelector((state) => state.notes);
 
 	const newNote = () => {

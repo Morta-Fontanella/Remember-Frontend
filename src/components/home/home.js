@@ -16,7 +16,7 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(getNotes());
 	}, [reloadNotes]);
-
+	/*
 	//reload notes after create or update note
 	useEffect(() => {
 		if (reloadNotes) {
@@ -24,7 +24,7 @@ const Home = () => {
 			setReloadNotes(false);
 		}
 	}, [reloadNotes, dispatch]);
-
+*/
 	return (
 		<main id="home">
 			<Notes setFormPopup={setFormPopup} setCurrentId={setCurrentId} />

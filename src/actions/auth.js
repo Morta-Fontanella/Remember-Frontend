@@ -1,5 +1,12 @@
-import { AUTH } from "../constants/actionTypes";
+import { AUTH, SET_USER } from "../constants/actionTypes";
 import * as api from "../api/index.js";
+
+export const setUser = (user) => {
+	return {
+		type: SET_USER,
+		payload: user,
+	};
+};
 
 export const signin = (formData) => async (dispatch) => {
 	try {

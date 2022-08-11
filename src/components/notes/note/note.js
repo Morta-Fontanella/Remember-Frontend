@@ -1,13 +1,13 @@
 import React from "react";
 import moment from "moment";
 import { deleteNote } from "../../../actions/notes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./noteStyles.css";
 
 function Note({ setFormPopup, note, setCurrentId }) {
 	const dispatch = useDispatch();
-	const user = JSON.parse(localStorage.getItem(`profile`));
+	const user = useSelector((state) => state.auth.user);
 	var canDelete = false;
 
 	const editButton = () => {

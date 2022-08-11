@@ -7,9 +7,10 @@ import { createNote, updateNote } from "../../actions/notes";
 
 function Form(props) {
 	const dispatch = useDispatch();
-	const user = JSON.parse(localStorage.getItem(`profile`));
 
-	const [noteData, setNoteData, setReloadNotes] = useState({
+	const user = useSelector((state) => state.auth.user);
+
+	const [noteData, setNoteData] = useState({
 		title: "",
 		content: "",
 		color: "",
@@ -71,8 +72,6 @@ function Form(props) {
 							name: user?.result?.id,
 						})
 					);
-					// reload notes
-					props.setReloadNotes(true);
 				}
 			}
 			props.setFormPopup(false);
